@@ -188,7 +188,7 @@ h2 em { font-style: italic; }
 .for-text strong { color: var(--text); font-weight: 500; }
 
 /* WHAT IT IS */
-#what { background: var(--bg2); border-bottom: 1px solid var(--border); }
+#what { background: var(--bg2); border-bottom: 1px solid var(--border); text-align: center; }
 .what-split { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .what-left { }
 .what-body {
@@ -348,7 +348,9 @@ h2 em { font-style: italic; }
 .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
 
 /* FOOTER CTA */
-#final-cta { padding: 7rem 2rem; text-align: center; background: var(--accent); }
+#final-cta { padding: 7rem 2rem; text-align: center; background: var(--accent); position: relative; overflow: hidden; }
+#final-cta .cta-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0.35; }
+#final-cta .wrap { position: relative; z-index: 1; }
 #final-cta h2 { color: var(--bg); margin-bottom: 1rem; }
 .cta-sub { font-size: 0.95rem; color: rgba(250,250,248,0.5); max-width: 380px; margin: 0 auto 2.5rem; }
 .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -603,6 +605,9 @@ footer {
 
 <!-- FINAL CTA -->
 <section id="final-cta">
+  <video class="cta-video" autoplay muted loop playsinline preload="auto">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
   <div class="wrap" style="text-align: center;">
     <h2 class="r r1" style="margin-bottom: 1rem;">Your body already knows<br>how to move.<br><em>It just needs the right<br>conditions to remember.</em></h2>
     <p class="cta-sub r r2">6 spots. Starts May 4. Once it's full, it's full.</p>
