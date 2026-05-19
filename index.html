@@ -377,6 +377,73 @@ footer {
   font-size: 0.75rem; color: var(--muted);
 }
 
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(28,27,24,0.7);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.25rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--bg); width: 100%; max-width: 540px;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  transform: translateY(16px);
+  transition: transform 0.25s ease;
+}
+.modal-overlay.open .modal-box { transform: none; }
+.modal-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  background: none; border: none; cursor: pointer;
+  font-size: 1.4rem; color: var(--muted); line-height: 1;
+  padding: 0.25rem 0.5rem;
+}
+.modal-close:hover { color: var(--text); }
+.modal-header {
+  padding: 2.5rem 2.5rem 0;
+}
+.modal-header h3 {
+  font-family: var(--serif-bold); font-size: 1.75rem; font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+.modal-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; }
+.modal-form { padding: 1.5rem 2.5rem 2.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { display: flex; flex-direction: column; margin-bottom: 1rem; }
+.form-group label {
+  font-size: 0.73rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted-light);
+  margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group textarea {
+  border: 1px solid var(--border); background: var(--bg2);
+  padding: 0.75rem 1rem; font-family: var(--sans); font-size: 16px;
+  color: var(--text); outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none; appearance: none;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--text); }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--faint); }
+.form-success {
+  padding: 2rem 2.5rem 2.5rem; text-align: center;
+  font-size: 1.05rem; color: var(--text); line-height: 1.7;
+}
+.form-success strong { display: block; font-family: var(--serif-bold); font-size: 1.4rem; margin-bottom: 0.5rem; }
+@media (max-width: 540px) {
+  .form-row { grid-template-columns: 1fr; }
+  .modal-header { padding: 2rem 1.5rem 0; }
+  .modal-form { padding: 1.25rem 1.5rem 2rem; }
+}
+
 /* REVEAL */
 .r { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .r.in { opacity: 1; transform: none; }
@@ -423,7 +490,7 @@ footer {
 
 <nav id="nav">
   <a href="#" class="nav-name">Gülcan.Alo</a>
-  <a href="#offer" class="nav-cta">Connect to Your Movement</a>
+  <a href="#" class="nav-cta open-waitlist">Join the Waiting List</a>
 </nav>
 
 <!-- HERO -->
@@ -441,9 +508,9 @@ footer {
       <p class="hero-sub r r2">
         If you've come to this page, you're likely struggling to feel connected to your movement. You're not alone, and you're not imagining it. It's hard, but I can help.
       </p>
-      <a href="#offer" class="btn-primary r">Connect to Your Movement →</a>
+      <a href="#" class="btn-primary r open-waitlist">Join the Waiting List →</a>
       <div class="hero-meta r">
-        <span><strong>Starts May 4</strong>Small group · Limited spots</span>
+        <span><strong>Starts 15 June</strong>Small group · Limited spots</span>
         <span><strong>€97</strong>Refund if not right</span>
         <span><strong>10–15 min/day</strong>Online · Worldwide</span>
       </div>
@@ -511,7 +578,7 @@ footer {
       </div>
     </div>
     <div style="text-align: center;">
-      <a href="https://buy.stripe.com/7sYbJ07XxdWnecw6gF7EQ01" class="btn-primary r">Connect to Your Movement →</a>
+      <a href="#" class="btn-primary r open-waitlist">Join the Waiting List →</a>
     </div>
   </div>
 </section>
@@ -561,19 +628,19 @@ footer {
       </div>
       <div class="offer-body">
         <div class="offer-price"><span class="offer-currency">€</span>97</div>
-        <div class="offer-date">Starts May 4, 2025 · Limited spots</div>
+        <div class="offer-date">Starts 15 June 2025 · Limited spots</div>
         <div class="offer-includes">
           <div class="offer-row"><span class="offer-check">✓</span><span>3 pre-recorded sessions per week (10–15 min each)</span></div>
           <div class="offer-row"><span class="offer-check">✓</span><span>Reflection days — take the work into your training, daily movement</span></div>
           <div class="offer-row"><span class="offer-check">✓</span><span>Reflection toolkits — guided prompts to integrate each week</span></div>
-          <div class="offer-row"><span class="offer-check">✓</span><span>4 live guided group calls with Gülcan (one per week)</span></div>
+          <div class="offer-row"><span class="offer-check">✓</span><span>2 live bi-weekly check-ins with Gülcan</span></div>
           <div class="offer-row"><span class="offer-check">✓</span><span>WhatsApp support throughout the programme</span></div>
           <div class="offer-row"><span class="offer-check">✓</span><span>All session recordings — watch anytime</span></div>
           <div class="offer-row"><span class="offer-check">✓</span><span>Small group — maximum 6 people</span></div>
         </div>
         <div class="offer-note" style="margin-bottom: 1rem;"><strong>Best for:</strong> People who already train and want real, personalised guidance in a small supported group.</div>
         <div class="offer-note" style="font-style: italic;">Full refund if you complete week 1 and don't feel it's right.</div>
-        <a href="https://buy.stripe.com/7sYbJ07XxdWnecw6gF7EQ01" class="btn-main">Connect to Your Movement →</a>
+        <button class="btn-main open-waitlist">Join the Waiting List →</button>
       </div>
     </div>
   </div>
@@ -611,9 +678,9 @@ footer {
   </video>
   <div class="wrap" style="text-align: center;">
     <h2 class="r r1" style="margin-bottom: 1rem;">Your body already knows<br>how to move.<br><em>It just needs the right<br>conditions to remember.</em></h2>
-    <p class="cta-sub r r2">6 spots. Starts May 4. Once it's full, it's full.</p>
+    <p class="cta-sub r r2">6 spots. Starts 15 June. Once it's full, it's full.</p>
     <div class="cta-row r">
-      <a href="https://buy.stripe.com/7sYbJ07XxdWnecw6gF7EQ01" class="btn-inv">Connect to Your Movement →</a>
+      <a href="#" class="btn-inv open-waitlist">Join the Waiting List →</a>
       <a href="#" class="btn-ghost-inv">Not ready yet? DM me first</a>
     </div>
   </div>
@@ -623,6 +690,47 @@ footer {
   <span>© 2026 Gülcan Aloğlu</span>
   <span>Movement Coaching · Online & Berlin · hello@gulcan-alo.com</span>
 </footer>
+
+<!-- WAITLIST MODAL -->
+<div id="waitlist-modal" class="modal-overlay" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-header">
+      <p class="label">The Organisation Reset · Starts 15 June</p>
+      <h3 id="modal-title">Join the Waiting List</h3>
+      <p class="modal-sub">Limited to 6 people. I'll be in touch personally once you're on the list.</p>
+    </div>
+    <form class="modal-form" id="waitlist-form" action="https://formspree.io/f/mjgzknaa" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="wl-fname">First name</label>
+          <input type="text" id="wl-fname" name="first_name" required placeholder="First name">
+        </div>
+        <div class="form-group">
+          <label for="wl-lname">Last name</label>
+          <input type="text" id="wl-lname" name="last_name" required placeholder="Last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="wl-email">Email</label>
+        <input type="email" id="wl-email" name="email" required placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label for="wl-instagram">Instagram handle</label>
+        <input type="text" id="wl-instagram" name="instagram" placeholder="@yourhandle">
+      </div>
+      <div class="form-group">
+        <label for="wl-struggle">What's the main thing you're struggling with right now in your training — and what would change for you if it actually got better?</label>
+        <textarea id="wl-struggle" name="struggle" placeholder="Take your time with this one..."></textarea>
+      </div>
+      <button type="submit" class="btn-main">Join the Waiting List →</button>
+    </form>
+    <div id="form-success" class="form-success" hidden>
+      <strong>You're on the list.</strong>
+      I'll read every answer and reach out personally. Talk soon.
+    </div>
+  </div>
+</div>
 
 <script>
 const nav = document.getElementById('nav');
@@ -640,6 +748,50 @@ document.querySelectorAll('.faq-q').forEach(q => {
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   });
+});
+
+// Waitlist modal
+const modal = document.getElementById('waitlist-modal');
+const form = document.getElementById('waitlist-form');
+const success = document.getElementById('form-success');
+
+function openModal(e) {
+  if (e) e.preventDefault();
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.open-waitlist').forEach(el => el.addEventListener('click', openModal));
+document.querySelector('.modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+    if (res.ok) {
+      form.hidden = true;
+      success.hidden = false;
+    } else {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Something went wrong — try again';
+    btn.disabled = false;
+  }
 });
 </script>
 </body>
