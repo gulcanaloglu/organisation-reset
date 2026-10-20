@@ -540,6 +540,12 @@ html { scroll-padding-top: 70px; }
   .hero-stack-img { height: 380px; margin-left: -1.25rem; margin-right: -1.25rem; }
   .guide-form-box { padding: 1.5rem; }
 }
+.faq-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2.5rem 0 0; }
+.faq-tab { font-family: var(--sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1.2rem; border: 1px solid var(--border); background: var(--bg); color: var(--muted); cursor: pointer; transition: all 0.2s; }
+.faq-tab:hover { border-color: var(--text); color: var(--text); }
+.faq-tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.faq-panel { margin-top: 1.5rem; }
+@media (max-width: 720px) { .faq-tab { flex: 1 1 calc(50% - 0.5rem); padding: 0.7rem 0.6rem; font-size: 0.7rem; } }
 </style>
 </head>
 <body>
@@ -626,8 +632,13 @@ html { scroll-padding-top: 70px; }
   <div class="wrap">
     <h2 class="r r1"><em>Frequently asked questions</em></h2>
     <p class="what-body r r2">Quick answers about the 4 Rules of Core Control.</p>
-    <p class="faq-group r">About Gülcan</p>
-    <div class="faq-list r">
+    <div class="faq-tabs r" role="tablist">
+      <button class="faq-tab active" role="tab" aria-selected="true" data-tab="t0">About Gülcan</button>
+      <button class="faq-tab" role="tab" aria-selected="false" data-tab="t1">Why core control matters</button>
+      <button class="faq-tab" role="tab" aria-selected="false" data-tab="t2">About the guide</button>
+      <button class="faq-tab" role="tab" aria-selected="false" data-tab="t3">Put it to work</button>
+    </div>
+    <div class="faq-list faq-panel r" id="t0" role="tabpanel">
       <div class="faq-item">
         <div class="faq-q">Who is Gülcan Alo?</div>
         <div class="faq-a">I'm a strength coach and Pilates teacher based in Berlin. I help people who train find strength that feels natural instead of forced.</div>
@@ -641,8 +652,7 @@ html { scroll-padding-top: 70px; }
         <div class="faq-a">No. The 4 rules work whether you lift heavy, teach Pilates, run, dance or are coming back from a setback.</div>
       </div>
     </div>
-    <p class="faq-group r">Why core control matters</p>
-    <div class="faq-list r">
+    <div class="faq-list faq-panel r" id="t1" role="tabpanel" hidden>
       <div class="faq-item">
         <div class="faq-q">What is core control?</div>
         <div class="faq-a">Core control is how your body coordinates tension, breath and movement. A controlled core can let go, breathe, adjust its tension and move in parts.</div>
@@ -664,8 +674,7 @@ html { scroll-padding-top: 70px; }
         <div class="faq-a">Most core workouts add more tension on top of tension. If your core can't let go, breathe or adjust, more exercises only make it more tired.</div>
       </div>
     </div>
-    <p class="faq-group r">About the guide</p>
-    <div class="faq-list r">
+    <div class="faq-list faq-panel r" id="t2" role="tabpanel" hidden>
       <div class="faq-item">
         <div class="faq-q">What is the 4 Rules of Core Control guide?</div>
         <div class="faq-a">It's a short guide that explains the 4 rules that make a core work, with a definition, examples and an exercise for each rule.</div>
@@ -687,8 +696,7 @@ html { scroll-padding-top: 70px; }
         <div class="faq-a">Yes. The 4 Rules of Core Control guide is free to download.</div>
       </div>
     </div>
-    <p class="faq-group r">Put it to work</p>
-    <div class="faq-list r">
+    <div class="faq-list faq-panel r" id="t3" role="tabpanel" hidden>
       <div class="faq-item">
         <div class="faq-q">What should I do after reading the guide?</div>
         <div class="faq-a">Build the rules into your training with the free Core Control Canvas. It finds your starting point and builds a short practice you do before you train.</div>
@@ -774,6 +782,15 @@ document.querySelectorAll('.faq-q').forEach(q => {
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
+  });
+});
+
+document.querySelectorAll('.faq-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.faq-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    t.classList.add('active'); t.setAttribute('aria-selected', 'true');
+    document.querySelectorAll('.faq-panel').forEach(p => { p.hidden = p.id !== t.dataset.tab; });
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   });
 });
 
