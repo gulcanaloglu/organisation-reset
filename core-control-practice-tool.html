@@ -140,9 +140,10 @@ textarea:focus{outline:2px solid var(--text);outline-offset:2px}
 .locked .eyebrow{color:rgba(250,250,248,.8)}
 .locked h3{font-family:var(--head);font-weight:700;font-size:clamp(1.7rem,4.5vw,2.4rem);line-height:1.08;letter-spacing:-.02em}
 .locked p{font-family:var(--serif);font-style:italic;font-size:1.3rem;line-height:1.4}
-.locklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin:0;padding:0;list-style:none;border-top:1px solid rgba(250,250,248,.2);padding-top:18px}
+.locklist{display:grid;grid-template-columns:1fr;gap:14px;margin:0;padding:0;list-style:none;border-top:1px solid rgba(250,250,248,.2);padding-top:18px}
 @media (max-width:560px){.locklist{grid-template-columns:1fr}}
-.locklist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;color:rgba(250,250,248,.92)}
+.locklist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;line-height:1.55;color:rgba(250,250,248,.88)}
+.locklist strong{color:var(--bg);font-weight:600}
 .locklist svg{flex:none;margin-top:4px}
 .locked .price{font-size:.95rem;color:rgba(250,250,248,.85)}
 .ctas{display:flex;flex-wrap:wrap;gap:12px}
@@ -348,11 +349,11 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
   var LIFTS = ["Squat","Deadlift","Overhead press","Pull-up or hang","Pilates class","Run"];
 
   var LOCKED = [
-    "Everything in the free Core Control Practice",
-    "Follow-along video you can press play on",
-    "Common mistakes and how to fix them",
-    "3 levels for every exercise, and when to move up",
-    "A 4-week plan with weekly dosing"
+    ["Everything in the free Core Control Practice", ""],
+    ["Follow-along video, coached like a 1:1 session.", "I cue you in real time with the same cues I use with my clients, so you know what to feel, not just what to do."],
+    ["The mistakes I see most, and how I fix them.", "Ribs flaring, glutes gripping, breath holding, neck taking over. Each one comes with the cue I use to correct it."],
+    ["3 levels for every exercise, and the signs you’re ready to move up.", "The same checks I use to decide when a client progresses, so you never move on too early or stay stuck too long."],
+    ["A 4-week plan, dosed the way I program for clients.", "What to do each week, for how long, and when to check your progress."]
   ];
 
   // ---- State ----
@@ -396,7 +397,7 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
 
   var lock = document.getElementById("locklist");
   var lockSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>';
-  LOCKED.forEach(function(t){ lock.appendChild(el("li",null,lockSvg+'<span>'+esc(t)+'</span>')); });
+  LOCKED.forEach(function(t){ lock.appendChild(el("li",null,lockSvg+'<span><strong>'+esc(t[0])+'</strong>'+(t[1]?' '+esc(t[1]):'')+'</span>')); });
 
   var cta = document.getElementById("cta-guided");
   if (GUIDED_URL) cta.href = GUIDED_URL;
