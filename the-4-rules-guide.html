@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>The 4 Rules of Core Control: Your Guide — Gülcan Aloğlu</title>
+<meta name="description" content="The free 4 Rules of Core Control guide by Gülcan Aloğlu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&display=swap">
+<style>
+/* Layout: long-form guide, one reading column, in the gulcan-alo.com look: warm off-white, Syne headings, Instrument Serif italics, Geist body, square edges, 1px rules. Single light theme, like the main site. */
+:root{
+  --bg:#FAFAF8; --bg2:#F4F1EC; --bg3:#EDE8E0;
+  --text:#1C1B18; --muted:#4A4845; --muted-light:#6B6860; --faint:#C8C4BC; --border:#E2DDD7; --accent:#2C2C28;
+  --serif:'Instrument Serif',Georgia,serif;
+  --head:'Syne',system-ui,sans-serif;
+  --sans:'Geist',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.in{max-width:760px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--text)}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+.eyebrow{font-weight:500;font-size:.73rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-light);display:flex;align-items:center;gap:.75rem}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--faint)}
+section{padding-block:80px;border-bottom:1px solid var(--border)}
+.stack{display:flex;flex-direction:column;gap:22px}
+
+/* Top bar */
+.welcome{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(250,250,248,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:11;background:var(--bg)}
+.welcome .in{max-width:none;padding-block:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.welcome .mark{font-family:var(--head);font-weight:700;font-size:.95rem;letter-spacing:.01em}
+.welcome .note{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:var(--bg2);padding-block:96px 72px;border-bottom:1px solid var(--border)}
+.hero-bg{position:absolute;right:-4%;top:50%;transform:translateY(-50%);font-family:var(--serif);font-style:italic;font-size:clamp(9rem,26vw,20rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--border);pointer-events:none;user-select:none}
+.hero .in{position:relative}
+.hero h1{font-family:var(--head);font-weight:600;font-size:clamp(2.6rem,7vw,4.4rem);line-height:1.04;letter-spacing:-.02em}
+.hero h1 span{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+.hero .sub{font-family:var(--head);font-weight:700;font-size:1.25rem;line-height:1.35;max-width:560px}
+.hero .lede{font-size:18px;max-width:580px;color:var(--muted)}
+
+/* Contents */
+.toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--border)}
+@media (max-width:600px){.toc{grid-template-columns:1fr}}
+.toc a{display:flex;gap:18px;align-items:flex-start;padding:24px;text-decoration:none;color:var(--text);border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg);transition:background .2s}
+.toc a:nth-child(even){border-right:0}
+.toc a:nth-last-child(-n+2){border-bottom:0}
+@media (max-width:600px){.toc a{border-right:0;border-bottom:1px solid var(--border)}.toc a:nth-last-child(-n+2){border-bottom:1px solid var(--border)}.toc a:last-child{border-bottom:0}}
+.toc a:hover{background:var(--bg2)}
+.toc b{font-family:var(--head);font-weight:600;font-size:2rem;line-height:1;color:var(--faint);flex:none;width:44px}
+.toc strong{display:block;font-family:var(--head);font-weight:700;font-size:1.1rem;line-height:1.25}
+.toc em{display:block;font-style:normal;font-size:.9rem;color:var(--muted);line-height:1.55;margin-top:6px}
+
+/* Intro */
+.intro h2,.results h2{font-family:var(--head);font-weight:700;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.02em}
+.intro h3{font-family:var(--head);font-weight:700;font-size:1.35rem;line-height:1.3;margin-top:14px}
+.intro p{color:var(--muted)}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--border)}
+@media (max-width:640px){.three{grid-template-columns:1fr}}
+.three div{padding:22px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
+.three div:first-child{border-left:0}
+@media (max-width:640px){.three div{border-left:0;border-top:1px solid var(--border)}.three div:first-child{border-top:0}}
+.three h4{font-family:var(--head);font-weight:700;font-size:1.1rem}
+.three p{font-size:.95rem;line-height:1.65}
+.warn{background:var(--bg2);border-left:2px solid var(--faint);padding:20px 24px;font-size:.98rem}
+.warn b{font-weight:600;color:var(--text)}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;border-top:1px solid var(--border)}
+.steps li{counter-increment:s;display:flex;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--border);font-size:1rem}
+.steps li::before{content:counter(s);font-family:var(--head);font-weight:600;font-size:1.4rem;color:var(--faint);width:22px;flex:none}
+.slogan{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,4vw,2.1rem);line-height:1.2;color:var(--text)}
+
+/* Rule chapters */
+.rule{background:var(--bg)}
+.rule:nth-of-type(even){background:var(--bg2)}
+.rule-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:end}
+.rule-num{font-family:var(--serif);font-style:italic;font-size:clamp(6rem,18vw,10rem);line-height:.8;color:transparent;-webkit-text-stroke:1px var(--muted-light)}
+.rule-head h2{font-family:var(--head);font-weight:700;font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.02;letter-spacing:-.02em}
+.rule-line{font-family:var(--serif);font-style:italic;font-size:1.6rem;line-height:1.3}
+.rule p{color:var(--muted)}
+.rule p.rule-line,.rule .take,.rule .def p{color:var(--text)}
+.def{border:1px solid var(--border);padding:26px 28px;background:var(--bg)}
+.rule:nth-of-type(even) .def{background:var(--bg)}
+.def .lbl,.exercise .lbl{font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-light);margin-bottom:10px;display:block}
+.def b{font-weight:600}
+.take{background:var(--accent);color:var(--bg)!important;padding:20px 26px;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.35}
+h3.ex{font-weight:500;font-size:.73rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-light)}
+.tablewrap{overflow-x:auto;border:1px solid var(--border);background:var(--bg)}
+table{width:100%;border-collapse:collapse;font-size:.92rem;line-height:1.55}
+th,td{padding:14px 16px;text-align:left;vertical-align:top;border-top:1px solid var(--border)}
+thead th{background:var(--accent);color:var(--bg);border-top:0;font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+thead th span{display:inline-flex;align-items:center;gap:7px}
+tbody th{font-family:var(--head);font-weight:700;width:26%}
+td{color:var(--muted)}
+td+td{color:var(--text)}
+.mk{margin-right:6px}
+.mk.no{color:var(--faint)} .mk.yes{color:var(--text)}
+thead .mk.no,thead .mk.yes{color:var(--bg)}
+td .mk{display:none}
+@media (max-width:560px){
+  table,thead,tbody,tr,th,td{display:block;width:100%}
+  thead{display:none}
+  tbody tr{border-top:1px solid var(--border);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+  tbody tr:first-child{border-top:0}
+  tbody th,tbody td{padding:0;border:0;width:auto}
+  td .mk{display:inline}
+}
+.exercise{background:var(--bg3);padding:24px 28px}
+.exercise p{color:var(--text)!important}
+
+/* Testimonials */
+.results{background:var(--bg)}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.quotes{grid-template-columns:1fr}}
+figure{margin:0;background:var(--bg2);border:1px solid var(--border);padding:28px;display:flex;flex-direction:column;gap:16px;justify-content:space-between}
+blockquote{margin:0;font-size:1rem;line-height:1.75;color:var(--text)}
+figcaption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-light)}
+figcaption b{color:var(--text);font-weight:600}
+
+/* Next step band */
+.next{background:var(--accent);color:var(--bg);border-bottom:0}
+.next .eyebrow{color:rgba(250,250,248,.55)}
+.next .eyebrow::before{background:rgba(250,250,248,.3)}
+.next h2{font-family:var(--head);font-weight:700;font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.02;letter-spacing:-.02em}
+.next .sub{font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1.35}
+.next p{color:rgba(250,250,248,.75)}
+.next p.sub{color:var(--bg)}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid rgba(250,250,248,.2)}
+.flow div{padding:16px 14px;border-left:1px solid rgba(250,250,248,.2);display:flex;flex-direction:column;gap:4px;min-width:0}
+.flow div:first-child{border-left:0}
+.flow b{font-family:var(--head);font-weight:600;font-size:1.3rem;color:rgba(250,250,248,.4)}
+.flow span{font-size:.85rem;font-weight:500;line-height:1.35}
+@media (max-width:620px){.flow{grid-template-columns:1fr}.flow div{border-left:0;border-top:1px solid rgba(250,250,248,.2);flex-direction:row;gap:12px;align-items:baseline}.flow div:first-child{border-top:0}}
+.btn{display:inline-block;font:inherit;font-weight:500;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:16px 36px;text-decoration:none;background:var(--bg);color:var(--accent);transition:opacity .2s}
+.btn:hover{opacity:.88}
+.btn.ghost{background:transparent;color:rgba(250,250,248,.7);border:1px solid rgba(250,250,248,.25);font-weight:400}
+.btn.ghost:hover{color:var(--bg);border-color:var(--bg)}
+.next a:focus-visible{outline-color:var(--bg)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+footer{padding-block:28px;font-size:.75rem;color:var(--muted);border-top:1px solid var(--border)}
+footer .in{max-width:none;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer .in span:first-child{max-width:620px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="welcome"><div class="in"><span class="mark">Gülcan Aloğlu</span><span class="note">You’re in. Here’s your free guide.</span></div></div>
+
+<header class="hero"><span class="hero-bg" aria-hidden="true">Control</span><div class="in stack">
+  <span class="eyebrow">A free guide from Gülcan Alo</span>
+  <h1>The 4 Rules of <span>Core Control</span></h1>
+  <p class="sub">The 4 Rules That Make Your Core Strong, Not Stiff</p>
+  <p class="lede">Most people who train brace harder and still feel weak. These are the 4 Rules to follow if you want your core to finally do its job, so your strength feels natural instead of forced.</p>
+</div></header>
+
+<section style="padding-top:0"><div class="in stack">
+  <span class="eyebrow">Inside this guide</span>
+  <nav class="toc" aria-label="The 4 Rules">
+    <a href="#rule-01"><b>01</b><span><strong>Learn to Let Go</strong><em>You can’t control tension if you don’t know how to release it.</em></span></a>
+    <a href="#rule-02"><b>02</b><span><strong>Make Room to Breathe</strong><em>Let your breath expand in every direction.</em></span></a>
+    <a href="#rule-03"><b>03</b><span><strong>Control the Tension</strong><em>Think dial, not ON/OFF switch.</em></span></a>
+    <a href="#rule-04"><b>04</b><span><strong>Move Independently</strong><em>Move your ribs, pelvis and limbs without always moving them together.</em></span></a>
+  </nav>
+</div></section>
+
+<section class="intro" style="padding-top:16px"><div class="in stack">
+  <h2>Why Does Your Core Still Feel Weak?</h2>
+  <p>Yet another core workout has failed. Of course, you blame yourself or, perhaps, your body. You did the ab work, took the Pilates classes, lifted heavier, maybe even paid a trainer, and your core still feels weak, stiff or switched off.</p>
+  <p>I’ve heard this story hundreds of times and you’ll be relieved to hear that most of the time it’s not you or your body. It’s your control.</p>
+  <h3>What do I mean when I say it’s your control?</h3>
+  <p>I’m talking about how your body coordinates tension, breath and movement. Your core should be able to let go, breathe, adjust its tension, and move in parts. The problem is, very few people who train can pull it off.</p>
+  <p>After you read this short guide, though, you won’t be one of those people. Understanding the 4 Rules of Core Control will put you in the rare group of people who lift, run and move in a way that looks effortless, because it is.</p>
+  <p>I’m obsessed with helping people who train find strength that feels natural. I learned it the hard way: years of bracing everything, until two herniated discs in my neck made me relearn how strength works. Now I teach it, and I’m about to help you.</p>
+  <p>Along the way I’ve figured out the 4 Rules that make a core work. Bodies that break these rules grip, compensate and stall.</p>
+  <p>These rules work whether you lift heavy, teach Pilates, run, or are coming back from a setback. Embody the 4 Rules and you’ll be able to see why an exercise works for you or against you.</p>
+  <p style="font-weight:700">Three things happen when you embody these rules:</p>
+  <div class="three">
+    <div><h4>You feel it.</h4><p>You start feeling your deep core work, not just your neck and lower back.</p></div>
+    <div><h4>Your lifts change.</h4><p>Weight that used to feel forced starts to feel smooth and controlled.</p></div>
+    <div><h4>Your body lasts.</h4><p>You stop fighting your body and start building strength you can keep for decades.</p></div>
+  </div>
+  <p class="warn"><b>Fair warning:</b> once you know the 4 Rules, every way you’ve been forcing your training will become obvious. The good news is you will know how to fix it, and a body that stops breaking these rules has a serious advantage. Let’s start with the rule people break the most.</p>
+  <span class="eyebrow" style="margin-top:16px">Three steps to core control</span>
+  <ol class="steps">
+    <li>Read each rule</li>
+    <li>Do the exercise for each rule</li>
+    <li>Build the rules into your training with the Core Control Canvas</li>
+  </ol>
+  <p class="slogan">Take control of your core and your strength will follow!</p>
+</div></section>
+
+<!-- RULE 01 -->
+<section class="rule" id="rule-01"><div class="in stack">
+  <div class="rule-head"><span class="rule-num">01</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 01</span><h2>Learn to Let Go</h2></div></div>
+  <p class="rule-line">You can’t control tension if you don’t know how to release it.</p>
+  <p>Nobody can build strength on top of constant tension. If your belly is held in all day, your glutes grip and your hip flexors pull your pelvis forward, your deep core has nowhere to go. The moment you add more effort on top, you’ve lost it.</p>
+  <p>Around my studio I have a mantra: “Let go before you go.”</p>
+  <p>“Squeeze your core” sounds strong. “Let your belly soften, then build support” actually works. One adds tension on top of tension. The other gives your core room to switch on.</p>
+  <p>Think of a fist you never open. You can’t make it grip any harder. You can only make it tired. Your core works the same way. When you learn to release first, every contraction after that has somewhere to go, and your training finally starts working for you.</p>
+  <div class="def"><span class="lbl">DEFINITION</span><p><b>RESTING TENSION</b> is how hard your muscles work when you’re not asking them to. The higher your resting tension, the less control you have when you need it. The lower your resting tension, the more strength you can actually use. Every time.</p></div>
+  <p class="take">Learn to let go and watch your core switch on.</p>
+  <h3 class="ex">Examples</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Situation</th><th><span><span class="mk no" aria-hidden="true">✕</span>Always Holding</span></th><th><span><span class="mk yes" aria-hidden="true">✓</span>Able to Let Go</span></th></tr></thead>
+    <tbody>
+      <tr><th>Before a deadlift</th><td><span class="mk no">✕</span>“Jaw, neck and abs braced before you even touch the bar.”</td><td><span class="mk yes">✓</span>“Settled first. Tension builds as you pull the slack out of the bar.”</td></tr>
+      <tr><th>Pilates class</th><td><span class="mk no">✕</span>“Pelvic floor squeezed for the whole hour.”</td><td><span class="mk yes">✓</span>“Pelvic floor lifts and lets go with your breath.”</td></tr>
+      <tr><th>Between sets</th><td><span class="mk no">✕</span>“Shoulders still up by your ears, breath fast and high.”</td><td><span class="mk yes">✓</span>“Shoulders drop, breath slows, body resets.”</td></tr>
+      <tr><th>Sitting at your desk</th><td><span class="mk no">✕</span>“Hip flexors tight, belly held, breathing into the chest.”</td><td><span class="mk yes">✓</span>“Sitting supported, belly free to move.”</td></tr>
+    </tbody>
+  </table></div>
+  <div class="exercise"><span class="lbl">EXERCISE</span><p>Lie on your back with your knees bent and feet flat. Take 5 slow breaths. Notice your belly, your glutes, your pelvic floor and your jaw. Notice every place that stays held on the inhale. Those are the places your core can’t use yet. Then breathe out slowly and let each one go, one at a time.</p></div>
+</div></section>
+
+<!-- RULE 02 -->
+<section class="rule" id="rule-02"><div class="in stack">
+  <div class="rule-head"><span class="rule-num">02</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 02</span><h2>Make Room to Breathe</h2></div></div>
+  <p class="rule-line">Let your breath expand in every direction.</p>
+  <p>Your breath is the engine of your core. Your diaphragm sits at the top, your pelvic floor at the bottom, and your deep abs wrap around the sides. Every inhale expands that whole system. When it can expand in every direction (front, sides and back), your core gets <b>pressure</b> it can use. When it can’t, the pressure goes somewhere else: up into your neck and shoulders, or down into your pelvic floor. Make room for your breath, and your core gets stronger without adding a single exercise.</p>
+  <p>A lifter can take a huge gulp of air into the chest and shoulders before every rep. Or she can let her ribs widen to the sides and back, low belly first. The first one looks strong and feels strained. The second one builds real support. You were never short on breath. You were short on room.</p>
+  <div class="def"><span class="lbl">DEFINITION</span><p>A <b>360° BREATH</b> is when your ribs and belly expand in every direction (front, sides and back) without your neck or shoulders doing the work. The more directions your breath can reach, the more support your core has. The fewer directions, the more you grip.</p></div>
+  <p class="take">Make room for your breath and watch your strength grow.</p>
+  <h3 class="ex">Examples</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Situation</th><th><span><span class="mk no" aria-hidden="true">✕</span>Blocked Breath</span></th><th><span><span class="mk yes" aria-hidden="true">✓</span>360° Breath</span></th></tr></thead>
+    <tbody>
+      <tr><th>Before a squat</th><td><span class="mk no">✕</span>“A big gulp of air into the chest. Shoulders rise.”</td><td><span class="mk yes">✓</span>“Ribs widen to the sides and back. Shoulders stay quiet.”</td></tr>
+      <tr><th>Plank</th><td><span class="mk no">✕</span>“Breath held until the timer runs out.”</td><td><span class="mk yes">✓</span>“Slow breaths. Belly, sides and back keep moving.”</td></tr>
+      <tr><th>Overhead press</th><td><span class="mk no">✕</span>“Ribs flare forward, lower back arches.”</td><td><span class="mk yes">✓</span>“Ribs stay down, breath fills down and back mainly.”</td></tr>
+      <tr><th>Pilates Hundred</th><td><span class="mk no">✕</span>“Belly pushed out, neck straining.”</td><td><span class="mk yes">✓</span>“Breath into the sides, belly quiet and supported.”</td></tr>
+    </tbody>
+  </table></div>
+  <div class="exercise"><span class="lbl">EXERCISE</span><p>Sit tall or lie on your back. Put your hands on your lower back ribs and breathe in. Do your hands move? Now try your side ribs. Then your low belly. Write down which areas move and which stay still. Every area that stays still is a direction your breath can’t reach yet, and that’s where your support is missing.</p></div>
+</div></section>
+
+<!-- RULE 03 -->
+<section class="rule" id="rule-03"><div class="in stack">
+  <div class="rule-head"><span class="rule-num">03</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 03</span><h2>Control the Tension</h2></div></div>
+  <p class="rule-line">Think dial, not ON/OFF switch.</p>
+  <p>Most people who train have two settings: off, or everything. They brace the same way for a light plank as for a heavy deadlift, and their neck, jaw and lower back pay the price. Can you learn to do it differently? Definitely.</p>
+  <p>Strong movers turn their tension up and down to match the task, and they keep breathing while they do it. The goal was never more tension. The goal is the right amount, in the right place, at the right moment.</p>
+  <p>Around my studio we say: “Dial, not switch.” A switch only has two positions, and both are wrong most of the time. A dial lets you choose. Light support to walk. Medium support for a dead bug. High support for a heavy lift. And always enough room left to breathe. When your tension matches the task, you stop wasting energy and your neck and lower back stop paying the bill.</p>
+  <p>A lifter can squeeze everything at 100% on every rep, from warm-up to top set. Or she can build tension step by step and save her full brace for the heaviest moment. The first one gets tired, tight and stuck. The second one gets stronger, because her effort goes exactly where the weight needs it.</p>
+  <div class="def"><span class="lbl">DEFINITION</span><p><b>THE TENSION DIAL</b> is your ability to choose how much core tension a movement needs (20%, 50%, 80%) and hold it while you breathe. The better your dial, the less energy you waste and the stronger you get. The worse your dial, the more you grip.</p></div>
+  <p class="take">Control your tension and watch your lifts feel lighter.</p>
+  <h3 class="ex">Examples</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Movement</th><th><span><span class="mk no" aria-hidden="true">✕</span>ON/OFF Switch</span></th><th><span><span class="mk yes" aria-hidden="true">✓</span>Dial</span></th></tr></thead>
+    <tbody>
+      <tr><th>Dead bug</th><td><span class="mk no">✕</span>“Full brace, breath held, neck tight.”</td><td><span class="mk yes">✓</span>“Steady medium support, breathing through every rep.”</td></tr>
+      <tr><th>Kettlebell swing</th><td><span class="mk no">✕</span>“Locked at 100% from start to finish.”</td><td><span class="mk yes">✓</span>“Snaps up at the top, softens at the bottom.”</td></tr>
+      <tr><th>Heavy deadlift</th><td><span class="mk no">✕</span>“Neck and jaw braced harder than the core.”</td><td><span class="mk yes">✓</span>“Core high, neck and jaw quiet.”</td></tr>
+      <tr><th>Push-up</th><td><span class="mk no">✕</span>“Hips sag, or everything shakes.”</td><td><span class="mk yes">✓</span>“Just enough tension for a straight line. No more.”</td></tr>
+    </tbody>
+  </table></div>
+  <div class="exercise"><span class="lbl">EXERCISE</span><p>Lie on your back with your knees bent. Brace your core gently, about 20%, and hold it for 3 breaths. Now go to 50%. Then 80%. Can you feel three different levels? Can you breathe at each one? If you can only find “off” and “everything,” your dial is your starting point. Practise the middle levels until you can feel them without thinking.</p></div>
+</div></section>
+
+<!-- RULE 04 -->
+<section class="rule" id="rule-04"><div class="in stack">
+  <div class="rule-head"><span class="rule-num">04</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 04</span><h2>Move Independently</h2></div></div>
+  <p class="rule-line">Move your ribs, pelvis and limbs without always moving them together.</p>
+  <p>Your ribs and your pelvis are designed to move on their own. When they only move together, like one stiff block, something else has to cover for them. Usually that’s your lower back, your hip flexors or your neck. That’s why so many strong people still feel their lifts in the wrong places. Teach your ribs and pelvis to move independently, and force finally travels where it should.</p>
+  <p>This rule is less about strength and more about coordination. Stiff bodies move in blocks, mostly by bracing everything together. Controlled bodies move in parts, letting each piece do its own job.</p>
+  <p>Here’s one way to tell whether your ribs and pelvis move independently. Lie on your back and tilt your pelvis forward and back. Watch your ribs. If they lift and flare every time your pelvis moves, they’re moving as one block, and your lower back is doing the work for both.</p>
+  <p>You can still brace hard when a lift asks for it, but when you do, make sure it comes after you can move each part on its own. Control first. Then stiffness.</p>
+  <p>A Pilates student can roll down by dropping from the middle of her back. Or she can peel down one segment at a time. The second one works because every part of her spine takes its share of the load.</p>
+  <div class="def"><span class="lbl">DEFINITION</span><p><b>INDEPENDENT CONTROL</b> is your ability to move your ribs without your pelvis following, and your pelvis without your ribs following. Strong trunks aren’t stiff blocks. They’re chains you control link by link. <b>Never move as a block. Always move in parts.</b></p></div>
+  <p class="take">Move your ribs and pelvis independently, and your lifts stop leaking.</p>
+  <h3 class="ex">Examples</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Movement</th><th><span><span class="mk no" aria-hidden="true">✕</span>Moves as a Block</span></th><th><span><span class="mk yes" aria-hidden="true">✓</span>Moves Independently</span></th></tr></thead>
+    <tbody>
+      <tr><th>Roll-down</th><td><span class="mk no">✕</span>“Drops in the middle, feet lift off the floor.”</td><td><span class="mk yes">✓</span>“Peels down one segment at a time.”</td></tr>
+      <tr><th>Overhead reach</th><td><span class="mk no">✕</span>“Lower back arches to get the arms up.”</td><td><span class="mk yes">✓</span>“Arms rise, ribs and pelvis stay stacked.”</td></tr>
+      <tr><th>Hip hinge</th><td><span class="mk no">✕</span>“Lower back rounds along with the hips.”</td><td><span class="mk yes">✓</span>“Hips travel back, spine stays long.”</td></tr>
+      <tr><th>Deep squat</th><td><span class="mk no">✕</span>“Tailbone tucks hard at the bottom, ribs flare on the way up.”</td><td><span class="mk yes">✓</span>“Pelvis follows the thighs, ribs stay over the pelvis.”</td></tr>
+    </tbody>
+  </table></div>
+  <div class="exercise"><span class="lbl">EXERCISE</span><p>Lie on your back with your hands on your lower ribs. Slowly tilt your pelvis forward and back. Do your ribs stay still? Then sit tall and roll down slowly to the floor, breathing out. Mark the point where you drop or your feet lift. That point is where your control ends today, and where your training starts.</p></div>
+</div></section>
+
+<!-- RESULTS -->
+<section class="results rule"><div class="in stack">
+  <h2>What Happens When You Take Control of Your Core</h2>
+  <p class="rule-line">When you follow the 4 Rules of Core Control, your training gets easier and your strength finally starts to show.</p>
+  <div class="quotes">
+    <figure><blockquote>“I was taught by physios to brace hard and squeeze everything. I used to tell them I can’t breathe. With Gülcan’s approach, I exhale and it just happens. I don’t have to force it.”</blockquote><figcaption><b>Shahad</b>, 34 · Dancer · Whole-body control</figcaption></figure>
+    <figure><blockquote>“This is incredible! I tried so many things before to feel my deep hip area, but it didn’t work. Now I can reach it!”</blockquote><figcaption><b>Kira</b>, 54 · Artisan · Lower-back and hip control</figcaption></figure>
+    <figure><blockquote>“I thought I was supposed to feel my lower back during bridges. Now I feel a deeper connection around my waist.”</blockquote><figcaption><b>Anna</b>, 35 · Runner · Hip control</figcaption></figure>
+    <figure><blockquote>“It’s surprising. I’ve never thought my ribs could move like this. And it’s an interesting feeling in my side muscles that I’ve never felt before.”</blockquote><figcaption><b>Beni</b>, 64</figcaption></figure>
+  </div>
+</div></section>
+
+<!-- NEXT STEP -->
+<section class="next"><div class="in stack">
+  <span class="eyebrow">Your next step</span>
+  <h2>Ready to Put the 4 Rules to Work?</h2>
+  <p class="sub">The 4 Rules show you what your core needs. Now it’s time to build them into your training with the Core Control Canvas.</p>
+  <p>Your core is the foundation of everything you do in training: your squats, your deadlifts, your Pilates, your runs.</p>
+  <p>When your control is missing, every exercise multiplies the strain. When it’s there, everything you do starts working together.</p>
+  <p>The Core Control Canvas is a free tool that finds your starting point and builds a short practice you do before every workout. It puts all 4 Rules in order: let go, breathe, dial, move.</p>
+  <div class="flow" aria-label="How the Canvas works">
+    <div><b>0</b><span>Heel Slide Check</span></div>
+    <div><b>1</b><span>Explore the 4 Rules</span></div>
+    <div><b>2</b><span>Find your priority</span></div>
+    <div><b>3</b><span>Build your practice</span></div>
+    <div><b>4</b><span>Check again</span></div>
+  </div>
+  <div class="ctas">
+    <a class="btn" id="canvas-link" href="/core-control-canvas">Build My Practice</a>
+    <a class="btn ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSeAlKfoAzrsPblxih3HOJn9g9uGSRkooz0_IOvpNWfi0d1mjA/viewform?usp=header" target="_blank" rel="noopener">Apply for 1:1 coaching</a>
+  </div>
+</div></section>
+
+<footer><div class="in">
+  <span>This guide is education, not medical advice. If you have pain that doesn’t change, numbness or tingling, or pelvic floor symptoms, see a physiotherapist or doctor first.</span>
+  <span>Copyright © 2026 Gülcan Alo. All rights reserved. @gulcan.alo</span>
+</div></footer>
+</body>
+</html>
