@@ -149,6 +149,24 @@ footer .in{max-width:none;display:flex;justify-content:space-between;gap:16px;fl
 footer .in span:first-child{max-width:620px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
+<style>
+/* Accessibility pass: darker body text, readable small labels, visible decorative numbers */
+:root{ --muted:#34322F; --muted-light:#55524C; --faint-text:#6F6B64; }
+.eyebrow,h3.ex,.def .lbl,.exercise .lbl{font-size:.8125rem}
+.welcome .note{font-size:.8125rem}
+thead th{font-size:.8125rem}
+figcaption{font-size:.8125rem}
+footer{font-size:.875rem}
+.toc b{color:var(--muted-light)}
+.mk.no{color:var(--muted-light)}
+.flow b{color:rgba(250,250,248,.75)}
+.flow span{font-size:.9rem}
+.next .eyebrow{color:rgba(250,250,248,.8)}
+.next p{color:rgba(250,250,248,.88)}
+.btn{font-size:.875rem}
+.btn.ghost{color:rgba(250,250,248,.9);border-color:rgba(250,250,248,.5)}
+.rule-num{-webkit-text-stroke:1.5px var(--muted-light)}
+</style>
 </head>
 <body>
 <div class="welcome"><div class="in"><span class="mark">Gülcan Aloğlu</span><span class="note">You’re in. Here’s your free guide.</span></div></div>
@@ -198,7 +216,7 @@ footer .in span:first-child{max-width:620px}
 
 <!-- RULE 01 -->
 <section class="rule" id="rule-01"><div class="in stack">
-  <div class="rule-head"><span class="rule-num">01</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 01</span><h2>Learn to Let Go</h2></div></div>
+  <div class="rule-head"><span class="rule-num" aria-hidden="true">01</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 01</span><h2>Learn to Let Go</h2></div></div>
   <p class="rule-line">You can’t control tension if you don’t know how to release it.</p>
   <p>Nobody can build strength on top of constant tension. If your belly is held in all day, your glutes grip and your hip flexors pull your pelvis forward, your deep core has nowhere to go. The moment you add more effort on top, you’ve lost it.</p>
   <p>Around my studio I have a mantra: “Let go before you go.”</p>
@@ -221,7 +239,7 @@ footer .in span:first-child{max-width:620px}
 
 <!-- RULE 02 -->
 <section class="rule" id="rule-02"><div class="in stack">
-  <div class="rule-head"><span class="rule-num">02</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 02</span><h2>Make Room to Breathe</h2></div></div>
+  <div class="rule-head"><span class="rule-num" aria-hidden="true">02</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 02</span><h2>Make Room to Breathe</h2></div></div>
   <p class="rule-line">Let your breath expand in every direction.</p>
   <p>Your breath is the engine of your core. Your diaphragm sits at the top, your pelvic floor at the bottom, and your deep abs wrap around the sides. Every inhale expands that whole system. When it can expand in every direction (front, sides and back), your core gets <b>pressure</b> it can use. When it can’t, the pressure goes somewhere else: up into your neck and shoulders, or down into your pelvic floor. Make room for your breath, and your core gets stronger without adding a single exercise.</p>
   <p>A lifter can take a huge gulp of air into the chest and shoulders before every rep. Or she can let her ribs widen to the sides and back, low belly first. The first one looks strong and feels strained. The second one builds real support. You were never short on breath. You were short on room.</p>
@@ -242,7 +260,7 @@ footer .in span:first-child{max-width:620px}
 
 <!-- RULE 03 -->
 <section class="rule" id="rule-03"><div class="in stack">
-  <div class="rule-head"><span class="rule-num">03</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 03</span><h2>Control the Tension</h2></div></div>
+  <div class="rule-head"><span class="rule-num" aria-hidden="true">03</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 03</span><h2>Control the Tension</h2></div></div>
   <p class="rule-line">Think dial, not ON/OFF switch.</p>
   <p>Most people who train have two settings: off, or everything. They brace the same way for a light plank as for a heavy deadlift, and their neck, jaw and lower back pay the price. Can you learn to do it differently? Definitely.</p>
   <p>Strong movers turn their tension up and down to match the task, and they keep breathing while they do it. The goal was never more tension. The goal is the right amount, in the right place, at the right moment.</p>
@@ -265,7 +283,7 @@ footer .in span:first-child{max-width:620px}
 
 <!-- RULE 04 -->
 <section class="rule" id="rule-04"><div class="in stack">
-  <div class="rule-head"><span class="rule-num">04</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 04</span><h2>Move Independently</h2></div></div>
+  <div class="rule-head"><span class="rule-num" aria-hidden="true">04</span><div class="stack" style="gap:8px"><span class="eyebrow">Rule 04</span><h2>Move Independently</h2></div></div>
   <p class="rule-line">Move your ribs, pelvis and limbs without always moving them together.</p>
   <p>Your ribs and your pelvis are designed to move on their own. When they only move together, like one stiff block, something else has to cover for them. Usually that’s your lower back, your hip flexors or your neck. That’s why so many strong people still feel their lifts in the wrong places. Teach your ribs and pelvis to move independently, and force finally travels where it should.</p>
   <p>This rule is less about strength and more about coordination. Stiff bodies move in blocks, mostly by bracing everything together. Controlled bodies move in parts, letting each piece do its own job.</p>
@@ -308,7 +326,7 @@ footer .in span:first-child{max-width:620px}
   <p>When your control is missing, every exercise multiplies the strain. When it’s there, everything you do starts working together.</p>
   <p>The Core Control Practice is a free tool that finds your starting point and builds a short practice you do before every workout. It puts all 4 Rules in order: let go, breathe, dial, move.</p>
   <div class="flow" aria-label="How the Core Control Practice works">
-    <div><b>0</b><span>Heel Slide Check</span></div>
+    <div><b>0</b><span>Self-Check</span></div>
     <div><b>1</b><span>Explore the 4 Rules</span></div>
     <div><b>2</b><span>Find your priority</span></div>
     <div><b>3</b><span>Build your practice</span></div>
@@ -316,7 +334,6 @@ footer .in span:first-child{max-width:620px}
   </div>
   <div class="ctas">
     <a class="btn" id="practice-link" href="/core-control-practice">Get Core Control Practice</a>
-    <a class="btn ghost" id="guided-practice-link" href="mailto:hello@gulcan-alo.com?subject=Core%20Control%20Guided%20Practice%20early%20access">Get Core Control Guided Practice</a>
   </div>
 </div></section>
 
