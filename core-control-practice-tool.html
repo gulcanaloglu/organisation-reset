@@ -68,6 +68,7 @@ h1 span{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacin
 .steps{margin:4px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
 .steps li{padding-left:4px}
 .q{font-family:var(--head);font-weight:700;font-size:1.1rem;line-height:1.3;margin-bottom:-6px}
+.poselink{font-size:15px;font-weight:500;align-self:flex-start;text-underline-offset:4px}
 .howto .lbl{font-weight:500;font-size:.8125rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-light)}
 .opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (max-width:620px){.opts{grid-template-columns:1fr}}
@@ -187,7 +188,7 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
 
   <div class="card" id="baseline">
     <div class="rulehead"><span class="num">0</span><div><h3>Self-Check</h3><p class="line">Your baseline. You repeat it at the end.</p></div></div>
-    <div class="howto"><span class="lbl">The test: one-leg heel slide</span>
+    <div class="howto"><span class="lbl">The test: one-leg heel slide · about 30 seconds</span>
       <ol class="steps">
         <li>Lie on your back, knees bent, feet flat on the floor, hip-width apart.</li>
         <li>Slide one hand, palm down, into the gap between your lower back and the floor, just above your belt line. Notice how much your back presses down on your hand.</li>
@@ -221,9 +222,16 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
   <div class="slots" id="slots"></div>
 
   <div class="card">
-    <div class="rulehead"><span class="num">4</span><div><h3>Check Again</h3><p class="line">Do the same heel slide test again, right after your practice, and compare.</p></div></div>
+    <div class="rulehead"><span class="num">4</span><div><h3>Check Again</h3><p class="line">Do the heel slide again, right after your practice, and compare.</p></div></div>
+    <div class="howto"><span class="lbl">The re-test: anchored heel slides</span>
+      <ol class="steps">
+        <li>Lie on your back, knees bent, feet flat. Slide one hand, palm down, into the gap between your lower back and the floor.</li>
+        <li>Tilt your pelvis toward 12 and toward 6 a few times, then let it settle in the middle, where it feels natural. That’s your anchor.</li>
+        <li>Keep that pelvis position and the same pressure on your hand, and slowly slide one heel away and back. Do 4 to 6 slides on each side.</li>
+        <li>Notice how far your heel goes before the pressure changes, your pelvis rocks, your ribs lift or you hold your breath.</li>
+      </ol></div>
     <div class="before"><span class="lbl">Before your practice</span><span id="rt-base">Not tested yet</span></div>
-    <p class="q">Right after your practice: how far did your heel slide before something changed?</p>
+    <p class="q">How far did your heel slide this time before something changed?</p>
     <div class="scores" role="radiogroup" aria-label="After your practice: how far did your heel slide before something changed?" id="now-scores"></div>
     <p id="rt-msg" class="cue" hidden></p>
   </div>
@@ -311,31 +319,29 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
   // dose per slot: [title, items[], seconds]
   // How to do each exercise: setup, move, feel. Mistakes, options and levels stay in the guided version.
   var HOW = {
-    butterfly:{name:"Reclined Butterfly", setup:"Lie on your back. Bring the soles of your feet together and let your knees fall out to the sides. Put a pillow under each knee.", move:"Stay still and breathe slowly. Let your weight sink into the floor.", feel:"Your inner thighs, belly and pelvic floor soften a little more on each exhale."},
-    knee:{name:"Knee to Chest", setup:"Lie on your back with both legs long. The long leg can stay slightly bent.", move:"Hug one knee toward your chest with both hands. Keep the other leg resting on the floor.", feel:"The front of the long hip gets longer. Your lower back stays heavy."},
-    ribs:{name:"Rib Breathing", setup:"Lie on your back, knees bent, feet flat. Put your hands on the sides of your lower ribs, or slide them under your back ribs.", move:"Breathe in through your nose into your hands. Breathe out slowly through your mouth.", feel:"Your ribs widen into your hands. Your neck and shoulders stay quiet."},
-    dial:{name:"Tension Dial", setup:"Lie on your back, knees bent. Put your fingertips on your lower belly, just inside your hip bones.", move:"Breathe out and gently firm up under your fingers. That’s about 20%. Build up level by level and keep breathing.", feel:"Your waist firms up all the way around, not only at the front. Jaw, neck and glutes stay soft."},
-    tilt:{name:"Pelvic Tilts", setup:"Lie on your back, knees bent, feet hip-width apart. Imagine a clock on your belly: 12 at your navel, 6 at your pubic bone.", move:"Breathe out and tilt your pelvis toward 12, so your lower back moves toward the floor. Breathe in and let it roll back toward 6.", feel:"The movement starts low in your belly. Your feet don’t push and your ribs stay still."},
-    heel:{name:"Heel Slides", setup:"Lie on your back, knees bent. Slide one hand under your lower back. Set your dial to about 30%.", move:"Breathe out and slowly slide one heel away along the floor. Breathe in and draw it back. Switch legs.", feel:"The pressure under your hand stays the same. Stop the slide where it changes."}
+    butterfly:{name:"Reclined Butterfly", link:"https://www.yogaclassplan.com/yoga-pose/reclining-bound-angle/", setup:"Lie on your back. Bring the soles of your feet together and let your knees fall open to the sides. Put a pillow under each knee if your hips or groin feel strained.", move:"Breathe slowly through your nose. On each inhale, let the breath reach your lower belly, the sides of your waist and your lower back. Let the exhale be long and easy.", feel:"Your inner thighs, belly and pelvic floor soften a little more on each exhale. Your lower back gets heavier on the floor."},
+    twist:{name:"Knee to Chest Twist", link:"https://www.yogaclassplan.com/yoga-pose/reclining-spinal-twist/", setup:"Lie on your back with both legs long. Hug your right knee toward your chest, then let it fall across your body to the left. Open your right arm out to the side and let both shoulders rest on the floor.", move:"Breathe in 360\u00b0: into your back ribs, all the way down your back, and into the side of your waist that is opening. Stay 60 seconds, then switch sides.", feel:"The open side of your waist and your back ribs widen on every inhale. Your neck and shoulders stay quiet."},
+    tilt:{name:"Pelvic Tilts", setup:"Lie on your back, knees bent, feet flat and hip-width apart. Imagine a clock on your belly: 12 at your navel, 6 at your pubic bone.", move:"Exhale slowly and gradually, and let the exhale tilt your pelvis toward 12, so your lower back moves toward the floor. Inhale and let your pelvis roll back toward 6.", feel:"The breath moves your pelvis, not your legs. Your feet don\u2019t push and your ribs stay still."},
+    bridge:{name:"Articulating Bridge", setup:"Lie on your back, knees bent, feet flat and hip-width apart, arms by your sides.", move:"Start a long exhale and keep it going until it begins to curl your pubic bone up toward your navel. Keep exhaling as you peel your back off the floor one segment at a time. At the top, inhale into your back, then roll down slowly, one segment at a time.", feel:"Your spine moves in parts, not as one block. The work is in the backs of your legs and your deep belly, not your lower back or neck."}
   };
 
   var SLOTS = [
     {n:"01", k:"Let go", rule:"r1", dose:{
-      easy:["Reclined Butterfly",["5 slow breaths."],45,["butterfly"]],
-      effort:["Reclined Butterfly + Knee to Chest",["Butterfly, 60 seconds.","Knee to chest, 30 seconds each side."],120,["butterfly","knee"]],
-      notyet:["Reclined Butterfly + Knee to Chest",["Butterfly, 90 seconds. Add a towel under your head.","Knee to chest, 60 seconds each side."],210,["butterfly","knee"]]}},
+      easy:["Reclined Butterfly",["60 seconds.","Breathe into your lower belly, sides and lower back."],60,["butterfly"]],
+      effort:["Reclined Butterfly",["75 seconds.","Breathe into your lower belly, sides and lower back."],75,["butterfly"]],
+      notyet:["Reclined Butterfly",["90 seconds.","Breathe into your lower belly, sides and lower back."],90,["butterfly"]]}},
     {n:"02", k:"Breathe", rule:"r2", dose:{
-      easy:["Rib Breathing",["3 breaths into your side ribs."],30,["ribs"]],
-      effort:["Rib Breathing",["5 breaths into your side ribs.","5 breaths into your back ribs."],90,["ribs"]],
-      notyet:["Rib Breathing, three directions",["5 breaths into your back ribs.","5 breaths into your side ribs.","5 breaths into your low belly."],150,["ribs"]]}},
+      easy:["Knee to Chest Twist",["60 seconds each side.","Breathe 360\u00b0: into your back and the side that opens."],120,["twist"]],
+      effort:["Knee to Chest Twist",["60 seconds each side.","Breathe 360\u00b0: into your back and the side that opens."],120,["twist"]],
+      notyet:["Knee to Chest Twist",["60 seconds each side.","Breathe 360\u00b0: into your back and the side that opens."],120,["twist"]]}},
     {n:"03", k:"Dial", rule:"r3", dose:{
-      easy:["Tension Dial",["50%, 3 breaths."],30,["dial"]],
-      effort:["Tension Dial",["20%, 3 breaths.","50%, 3 breaths."],60,["dial"]],
-      notyet:["Tension Dial, full ladder",["20%, then 50%, then 80%, 3 breaths each.","Go back to 20% between levels."],120,["dial"]]}},
+      easy:["Pelvic Tilts",["6 tilts.","Let a slow, gradual exhale move your pelvis."],60,["tilt"]],
+      effort:["Pelvic Tilts",["6 tilts.","Let a slow, gradual exhale move your pelvis."],60,["tilt"]],
+      notyet:["Pelvic Tilts",["6 tilts.","Let a slow, gradual exhale move your pelvis."],60,["tilt"]]}},
     {n:"04", k:"Move", rule:"r4", dose:{
-      easy:["Pelvic Tilts + Heel Slides",["5 pelvic tilts.","3 heel slides each side."],90,["tilt","heel"]],
-      effort:["Pelvic Tilts + Heel Slides",["8 pelvic tilts.","5 heel slides each side."],150,["tilt","heel"]],
-      notyet:["Pelvic Tilts + Heel Slides",["10 pelvic tilts, hands on your ribs.","8 heel slides each side, slow."],240,["tilt","heel"]]}}
+      easy:["Articulating Bridge",["4 bridges.","Exhale to curl up, inhale into your back, roll down."],60,["bridge"]],
+      effort:["Articulating Bridge",["5 bridges.","Exhale to curl up, inhale into your back, roll down."],75,["bridge"]],
+      notyet:["Articulating Bridge",["5 bridges, slowly.","Exhale to curl up, inhale into your back, roll down."],75,["bridge"]]}}
   ];
 
   var LIFTS = ["Squat","Deadlift","Overhead press","Pull-up or hang","Pilates class","Run"];
@@ -444,7 +450,7 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
       row.innerHTML = '<div class="side"><b>'+s.n+'</b><span>'+s.k+'</span></div>'+
         '<div class="main">'+chip+'<h4>'+esc(d[0])+'</h4><ul>'+d[1].map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul><span class="time">About '+fmt(d[2])+'</span>'+
         '<details class="how"'+(openHow[s.n]?' open':'')+' data-slot="'+s.n+'"><summary>How to do it</summary>'+d[3].map(function(h){var x=HOW[h];
-          return '<div class="howex"><b>'+esc(x.name)+'</b><dl><dt>Setup</dt><dd>'+esc(x.setup)+'</dd><dt>Move</dt><dd>'+esc(x.move)+'</dd><dt>Feel</dt><dd>'+esc(x.feel)+'</dd></dl></div>';}).join("")+'</details></div>';
+          return '<div class="howex"><b>'+esc(x.name)+'</b>'+(x.link?'<a class="poselink" href="'+x.link+'" target="_blank" rel="noopener">See a photo of the pose</a>':'')+'<dl><dt>Setup</dt><dd>'+esc(x.setup)+'</dd><dt>Move</dt><dd>'+esc(x.move)+'</dd><dt>Feel</dt><dd>'+esc(x.feel)+'</dd></dl></div>';}).join("")+'</details></div>';
       box.appendChild(row);
     });
     document.getElementById("mins").textContent = Math.round(total/60);
