@@ -523,31 +523,42 @@ footer {
   .rule { margin: 0 0 -1px 0; }
   .site-footer { padding: 2rem 1.25rem; }
 }
+#hero-stack { margin-top: 56px; background: var(--bg2); border-bottom: 1px solid var(--border); text-align: center; padding: 6rem 2rem 0; }
+.hero-stack-text .hero-tag { justify-content: center; }
+.hero-stack-text .hero-tag::after { content: ''; display: block; width: 24px; height: 1px; background: var(--faint); }
+.hero-stack-text h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); }
+.hero-stack-text .hero-sub { max-width: 600px; margin-left: auto; margin-right: auto; }
+.hero-stack-img { max-width: 1000px; margin: 1rem auto 0; height: 560px; overflow: hidden; }
+.hero-stack-img img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 35%; display: block; }
+html { scroll-padding-top: 70px; }
+.faq-group { font-size: 0.73rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-light); margin: 3rem 0 0; }
+.faq-group + .faq-list { margin-top: 1rem; }
+.guide-form-box { background: var(--bg); max-width: 480px; margin: 0 auto; padding: 2rem; text-align: left; }
+.guide-form-box .form-success { padding: 1rem 0; }
+@media (max-width: 720px) {
+  #hero-stack { padding: 4rem 1.25rem 0; margin-top: 52px; }
+  .hero-stack-img { height: 380px; margin-left: -1.25rem; margin-right: -1.25rem; }
+  .guide-form-box { padding: 1.5rem; }
+}
 </style>
 </head>
 <body>
 
 <nav id="nav">
   <a href="#" class="nav-name">Gülcan.Alo</a>
-  <a href="#" class="nav-cta open-waitlist">Get the Guide</a>
+  <a href="#form" class="nav-cta">Get the Guide</a>
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-visual">
-    <img class="hero-img" src="about-me.PNG" alt="Gülcan Aloğlu" />
+<section id="hero-stack">
+  <div class="wrap hero-stack-text">
+    <div class="hero-tag r">Free guide</div>
+    <h1 class="r r1">The 4 Rules of <span class="accent">Core Control</span></h1>
+    <p class="hero-sub r r2">Most people who train feel weak in their core because their control is missing. These are the 4 unbreakable rules that get you the strength you deserve.</p>
+    <a href="#form" class="btn-primary r">Get the Guide →</a>
   </div>
-  <div class="hero-content">
-    <div class="hero-inner">
-      <div class="hero-tag r">Free guide</div>
-      <h1 class="r r1">The 4 Rules of<br><span class="accent">Core Control</span></h1>
-      <p class="hero-sub r r2">Most people who train feel weak in their core because their control is missing. These are the 4 unbreakable rules that get you the strength you deserve.</p>
-      <a href="#" class="btn-primary r open-waitlist">Get the Guide →</a>
-      <div class="hero-meta r">
-        <span><strong>Free</strong>Read it in one sitting</span>
-        <span><strong>4 rules</strong>A simple exercise for each</span>
-      </div>
-    </div>
+  <div class="hero-stack-img r">
+    <img src="about-me.PNG" alt="Gülcan Aloğlu" />
   </div>
 </section>
 
@@ -555,7 +566,7 @@ footer {
 <section id="proof" class="sec">
   <div class="wrap-wide">
     <h2 class="r r1">I've helped lifters, dancers, runners and Pilates teachers find <span class="accent">strength that feels natural.</span> <em>Let me help you.</em></h2>
-    <a href="#" class="btn-primary r open-waitlist" style="margin: 1.5rem 0 0;">Get the Guide →</a>
+    <a href="#form" class="btn-primary r" style="margin: 1.5rem 0 0;">Get the Guide →</a>
   </div>
 </section>
 
@@ -570,7 +581,7 @@ footer {
       <div class="rule"><div class="step-num">03</div><div class="step-title">Control the Tension</div><p class="step-body">How to get your core to do the work for you</p></div>
       <div class="rule"><div class="step-num">04</div><div class="step-title">Move Independently</div><p class="step-body">The skill that builds instant control</p></div>
     </div>
-    <a href="#" class="btn-primary r open-waitlist" style="margin-bottom: 0;">Get the Guide →</a>
+    <a href="#form" class="btn-primary r" style="margin-bottom: 0;">Get the Guide →</a>
   </div>
 </section>
 
@@ -586,7 +597,7 @@ footer {
       <div class="what-item" style="display: flex; gap: 1rem; align-items: flex-start;"><span style="font-weight: 600; flex-shrink: 0;">→</span><span><strong>How to make your core work for you.</strong> Turn your tension into a dial you control.</span></div>
       <div class="what-item" style="display: flex; gap: 1rem; align-items: flex-start;"><span style="font-weight: 600; flex-shrink: 0;">→</span><span><strong>The major shift that changes your lifts.</strong> Stop moving like one stiff block.</span></div>
     </div>
-    <a href="#" class="btn-primary r open-waitlist" style="margin-bottom: 0;">Get the Guide →</a>
+    <a href="#form" class="btn-primary r" style="margin-bottom: 0;">Get the Guide →</a>
   </div>
 </section>
 
@@ -601,9 +612,7 @@ footer {
 <!-- TESTIMONIALS -->
 <section id="testimonials" class="sec">
   <div class="wrap-wide">
-    <p class="label r">Trusted by people who already train</p>
-    <h2 class="r r1"><em>And finally feel the difference.</em></h2>
-    <div class="testi-grid four r">
+    <div class="testi-grid four r" style="margin-top: 0;">
       <div class="testi-card"><p class="testi-quote">"I was taught by physios to brace hard and squeeze everything. I used to tell them I can't breathe. With Gülcan's approach, I exhale and it just happens. I don't have to force it."</p><p class="testi-name"><strong>Shahad</strong>, 34, dancer</p></div>
       <div class="testi-card"><p class="testi-quote">"This is incredible! I tried so many things before to feel my deep hip area, but it didn't work. Now I can reach it!"</p><p class="testi-name"><strong>Kira</strong>, 54, artisan</p></div>
       <div class="testi-card"><p class="testi-quote">"I thought I was supposed to feel my lower back during bridges. Now I feel a deeper connection around my waist."</p><p class="testi-name"><strong>Anna</strong>, 35, runner</p></div>
@@ -616,7 +625,8 @@ footer {
 <section id="faq" class="sec">
   <div class="wrap">
     <h2 class="r r1"><em>Frequently asked questions</em></h2>
-    <p class="what-body r r2">Everything you need to know about the 4 Rules of Core Control.</p>
+    <p class="what-body r r2">Quick answers about the 4 Rules of Core Control.</p>
+    <p class="faq-group r">About Gülcan</p>
     <div class="faq-list r">
       <div class="faq-item">
         <div class="faq-q">Who is Gülcan Alo?</div>
@@ -630,6 +640,9 @@ footer {
         <div class="faq-q">Is this only for people who lift?</div>
         <div class="faq-a">No. The 4 rules work whether you lift heavy, teach Pilates, run, dance or are coming back from a setback.</div>
       </div>
+    </div>
+    <p class="faq-group r">Why core control matters</p>
+    <div class="faq-list r">
       <div class="faq-item">
         <div class="faq-q">What is core control?</div>
         <div class="faq-a">Core control is how your body coordinates tension, breath and movement. A controlled core can let go, breathe, adjust its tension and move in parts.</div>
@@ -650,6 +663,9 @@ footer {
         <div class="faq-q">Why haven't core workouts fixed this?</div>
         <div class="faq-a">Most core workouts add more tension on top of tension. If your core can't let go, breathe or adjust, more exercises only make it more tired.</div>
       </div>
+    </div>
+    <p class="faq-group r">About the guide</p>
+    <div class="faq-list r">
       <div class="faq-item">
         <div class="faq-q">What is the 4 Rules of Core Control guide?</div>
         <div class="faq-a">It's a short guide that explains the 4 rules that make a core work, with a definition, examples and an exercise for each rule.</div>
@@ -670,6 +686,9 @@ footer {
         <div class="faq-q">Is the guide free?</div>
         <div class="faq-a">Yes. The 4 Rules of Core Control guide is free to download.</div>
       </div>
+    </div>
+    <p class="faq-group r">Put it to work</p>
+    <div class="faq-list r">
       <div class="faq-item">
         <div class="faq-q">What should I do after reading the guide?</div>
         <div class="faq-a">Build the rules into your training with the free Core Control Canvas. It finds your starting point and builds a short practice you do before you train.</div>
@@ -684,12 +703,12 @@ footer {
       </div>
     </div>
     <div style="text-align: center; margin-top: 3rem;">
-      <a href="#" class="btn-primary r open-waitlist" style="margin-bottom: 0;">Get the Guide →</a>
+      <a href="#form" class="btn-primary r" style="margin-bottom: 0;">Get the Guide →</a>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
+<!-- FINAL CTA + FORM -->
 <section id="final-cta">
   <video class="cta-video" autoplay muted loop playsinline preload="auto">
     <source src="hero.mp4" type="video/mp4">
@@ -697,8 +716,37 @@ footer {
   <div class="wrap" style="text-align: center;">
     <h2 class="r r1" style="margin-bottom: 1rem;">Stop letting missing core control <em>cost you your strength.</em></h2>
     <p class="cta-sub r r2">Download the guide and learn the 4 rules that make your strength feel natural instead of forced.</p>
-    <div class="cta-row r">
-      <a href="#" class="btn-inv open-waitlist">Get the Guide →</a>
+    <div id="form" class="guide-form-box r">
+      <form id="guide-form" action="https://formspree.io/f/mjgzknaa" method="POST">
+        <input type="hidden" name="source" value="4 Rules of Core Control guide">
+        <input type="hidden" name="_subject" value="New 4 Rules guide request">
+        <div class="form-group">
+          <label for="g-fname">First name</label>
+          <input type="text" id="g-fname" name="first_name" required placeholder="First name">
+        </div>
+        <div class="form-group">
+          <label for="g-email">Email</label>
+          <input type="email" id="g-email" name="email" required placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="g-who">What describes you best?</label>
+          <select id="g-who" name="describes_me" required>
+            <option value="" disabled selected>Choose one</option>
+            <option>I lift weights</option>
+            <option>I do Pilates</option>
+            <option>I teach Pilates or movement</option>
+            <option>I run</option>
+            <option>I dance</option>
+            <option>I'm coming back from a setback</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-main">Send me the guide →</button>
+      </form>
+      <div id="form-success" class="form-success" hidden>
+        <strong>It's on its way.</strong>
+        Keep an eye on your inbox. The guide will reach you soon.
+      </div>
     </div>
   </div>
 </section>
@@ -710,48 +758,6 @@ footer {
     <span>Copyright © 2026 Gülcan Alo. All rights reserved.</span>
   </div>
 </footer>
-
-<!-- GUIDE MODAL -->
-<div id="waitlist-modal" class="modal-overlay" aria-modal="true" role="dialog" aria-labelledby="modal-title">
-  <div class="modal-box">
-    <button class="modal-close" aria-label="Close">×</button>
-    <div class="modal-header">
-      <p class="label">Free guide</p>
-      <h3 id="modal-title">Get the 4 Rules of Core Control</h3>
-      <p class="modal-sub">Tell me where to send it.</p>
-    </div>
-    <form class="modal-form" id="waitlist-form" action="https://formspree.io/f/mjgzknaa" method="POST">
-      <input type="hidden" name="source" value="4 Rules of Core Control guide">
-      <input type="hidden" name="_subject" value="New 4 Rules guide request">
-      <div class="form-group">
-        <label for="g-fname">First name</label>
-        <input type="text" id="g-fname" name="first_name" required placeholder="First name">
-      </div>
-      <div class="form-group">
-        <label for="g-email">Email</label>
-        <input type="email" id="g-email" name="email" required placeholder="your@email.com">
-      </div>
-      <div class="form-group">
-        <label for="g-who">What describes you best?</label>
-        <select id="g-who" name="describes_me" required>
-          <option value="" disabled selected>Choose one</option>
-          <option>I lift weights</option>
-          <option>I do Pilates</option>
-          <option>I teach Pilates or movement</option>
-          <option>I run</option>
-          <option>I dance</option>
-          <option>I'm coming back from a setback</option>
-          <option>Something else</option>
-        </select>
-      </div>
-      <button type="submit" class="btn-main">Send me the guide →</button>
-    </form>
-    <div id="form-success" class="form-success" hidden>
-      <strong>It's on its way.</strong>
-      Keep an eye on your inbox. The guide will reach you soon.
-    </div>
-  </div>
-</div>
 
 <script>
 const nav = document.getElementById('nav');
@@ -771,26 +777,8 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
-// Waitlist modal
-const modal = document.getElementById('waitlist-modal');
-const form = document.getElementById('waitlist-form');
+const form = document.getElementById('guide-form');
 const success = document.getElementById('form-success');
-
-function openModal(e) {
-  if (e) e.preventDefault();
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  modal.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.querySelectorAll('.open-waitlist').forEach(el => el.addEventListener('click', openModal));
-document.querySelector('.modal-close').addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const btn = form.querySelector('button[type="submit"]');
