@@ -183,12 +183,12 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
   <div class="parthead">
     <span class="eyebrow">Part 1</span>
     <h2 id="p1">Find Your Starting Point</h2>
-    <p>You’ll do 5 short tests lying on your back: the Self-Check first, then one test for each of the 4 Rules. For each test, follow the steps, do it slowly for a few breaths, then answer the question underneath by tapping what was closest to what you felt. There are no wrong answers. Your answers decide what goes into your practice.</p>
+    <p>You’ll do 5 short checks lying on your back: the Self-Check first, then one check for each of the 4 Rules. For each check, follow the steps, do it slowly for a few breaths, then answer the question underneath by tapping what was closest to what you felt. There are no wrong answers. Your answers decide what goes into your practice.</p>
   </div>
 
   <div class="card" id="baseline">
     <div class="rulehead"><span class="num">0</span><div><h3>Self-Check</h3><p class="line">Your baseline. You repeat it at the end.</p></div></div>
-    <div class="howto"><span class="lbl">The test: one-leg heel slide · about 30 seconds</span>
+    <div class="howto"><span class="lbl">The check: one-leg heel slide · about 30 seconds</span>
       <ol class="steps">
         <li>Lie on your back, knees bent, feet flat on the floor, hip-width apart.</li>
         <li>Slide one hand, palm down, into the gap between your lower back and the floor, just above your belt line. Notice how much your back presses down on your hand.</li>
@@ -223,14 +223,14 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
 
   <div class="card">
     <div class="rulehead"><span class="num">4</span><div><h3>Check Again</h3><p class="line">Do the heel slide again, right after your practice, and compare.</p></div></div>
-    <div class="howto"><span class="lbl">The re-test: anchored heel slides</span>
+    <div class="howto"><span class="lbl">The re-check: anchored heel slides</span>
       <ol class="steps">
         <li>Lie on your back, knees bent, feet flat. Slide one hand, palm down, into the gap between your lower back and the floor.</li>
         <li>Tilt your pelvis toward 12 and toward 6 a few times, then let it settle in the middle, where it feels natural. That’s your anchor.</li>
         <li>Keep that pelvis position and the same pressure on your hand, and slowly slide one heel away and back. Do 4 to 6 slides on each side.</li>
         <li>Notice how far your heel goes before the pressure changes, your pelvis rocks, your ribs lift or you hold your breath.</li>
       </ol></div>
-    <div class="before"><span class="lbl">Before your practice</span><span id="rt-base">Not tested yet</span></div>
+    <div class="before"><span class="lbl">Before your practice</span><span id="rt-base">Not checked yet</span></div>
     <p class="q">How far did your heel slide this time before something changed?</p>
     <div class="scores" role="radiogroup" aria-label="After your practice: how far did your heel slide before something changed?" id="now-scores"></div>
     <p id="rt-msg" class="cue" hidden></p>
@@ -282,25 +282,25 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
 
   var RULES = [
     {id:"r1", n:"01", name:"Learn to Let Go", line:"You can’t control tension if you don’t know how to release it.",
-     check:"The test: knee hug", how:["Lie on your back with both legs straight on the floor.","Hug one knee toward your chest with both hands.","Stay there for 3 slow breaths and watch the other, straight leg and your lower back."], q:"What did your straight leg and lower back do?",
+     check:"The check: knee hug", how:["Lie on your back with both legs straight on the floor.","Hug one knee toward your chest with both hands.","Stay there for 3 slow breaths and watch the other, straight leg and your lower back."], q:"What did your straight leg and lower back do?",
      opts:{easy:"The long leg stays heavy on the floor. Lower back stays quiet.",
            effort:"It stays down, but I feel the front of my hip or lower back working.",
            notyet:"The long thigh lifts, or my lower back arches."},
      reflect:"Where do I hold tension when I’m not asking for it? (belly, glutes, pelvic floor, jaw)"},
     {id:"r2", n:"02", name:"Make Room to Breathe", line:"Let your breath expand in every direction.",
-     check:"The test: hands on ribs", how:["Lie on your back, knees bent, feet flat.","Put your hands on the sides of your lower ribs and take 3 slow breaths in through your nose.","Then slide your hands under your back ribs and take 3 more breaths."], q:"Where did your breath go?",
+     check:"The check: hands on ribs", how:["Lie on your back, knees bent, feet flat.","Put your hands on the sides of your lower ribs and take 3 slow breaths in through your nose.","Then slide your hands under your back ribs and take 3 more breaths."], q:"Where did your breath go?",
      opts:{easy:"My ribs widen into my hands at the sides and back. Neck and shoulders stay quiet.",
            effort:"I feel it in one direction only, or only when I push the breath.",
            notyet:"The breath goes into my chest and shoulders. My hands barely move."},
      reflect:"Which direction is hardest to reach: back ribs, side ribs or low belly?"},
     {id:"r3", n:"03", name:"Control the Tension", line:"Think dial, not ON/OFF switch.",
-     check:"The test: turn the dial", how:["Lie on your back, knees bent, fingertips on your lower belly just inside your hip bones.","Tighten your belly gently, about 20% of your strongest brace, and keep breathing for 3 breaths.","Go up to about 50% for 3 breaths, then about 80% for 3 breaths."], q:"How many different levels of tension could you feel and breathe through?",
+     check:"The check: turn the dial", how:["Lie on your back, knees bent, fingertips on your lower belly just inside your hip bones.","Tighten your belly gently, about 20% of your strongest brace, and keep breathing for 3 breaths.","Go up to about 50% for 3 breaths, then about 80% for 3 breaths."], q:"How many different levels of tension could you feel and breathe through?",
      opts:{easy:"I feel three clear levels and keep breathing at each one.",
            effort:"I find two levels, or I hold my breath at 80%.",
            notyet:"I only have off and everything."},
      reflect:"Where does extra tension show up as I turn the dial up? (jaw, neck, glutes, breath)"},
     {id:"r4", n:"04", name:"Move Independently", line:"Move your ribs, pelvis and limbs without always moving them together.",
-     check:"The test: pelvic tilt", how:["Lie on your back, knees bent, hands resting on your lower ribs.","Imagine a clock on your belly: 12 at your navel, 6 at your pubic bone.","Slowly tilt your pelvis toward 12, so your lower back moves toward the floor, then toward 6. Do this 5 times."], q:"What did your ribs do while your pelvis moved?",
+     check:"The check: pelvic tilt", how:["Lie on your back, knees bent, hands resting on your lower ribs.","Imagine a clock on your belly: 12 at your navel, 6 at your pubic bone.","Slowly tilt your pelvis toward 12, so your lower back moves toward the floor, then toward 6. Do this 5 times."], q:"What did your ribs do while your pelvis moved?",
      opts:{easy:"My pelvis rocks smoothly and my ribs stay still under my hands.",
            effort:"My ribs stay still only if I go small or slow, or hold my breath.",
            notyet:"My ribs lift and flare every time my pelvis moves."},
