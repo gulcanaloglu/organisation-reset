@@ -335,13 +335,14 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
       effort:["Knee to Chest Twist",["60 seconds each side.","Breathe 360\u00b0: into your back and the side that opens."],120,["twist"]],
       notyet:["Knee to Chest Twist",["60 seconds each side.","Breathe 360\u00b0: into your back and the side that opens."],120,["twist"]]}},
     {n:"03", k:"Dial", rule:"r3", dose:{
-      easy:["Pelvic Tilts",["6 tilts.","Let a slow, gradual exhale move your pelvis."],60,["tilt"]],
-      effort:["Pelvic Tilts",["6 tilts.","Let a slow, gradual exhale move your pelvis."],60,["tilt"]],
-      notyet:["Pelvic Tilts",["6 tilts.","Let a slow, gradual exhale move your pelvis."],60,["tilt"]]}},
+      easy:["Pelvic Tilts",["1 minute, about 6 slow tilts.","Let a slow, gradual exhale move your pelvis."],60,["tilt"]],
+      effort:["Pelvic Tilts",["2 minutes, about 12 slow tilts.","Let a slow, gradual exhale move your pelvis."],120,["tilt"]],
+      notyet:["Pelvic Tilts",["3 minutes, about 18 slow tilts.","Let a slow, gradual exhale move your pelvis."],180,["tilt"]],
+      prio:["Pelvic Tilts",["3 minutes, about 18 slow tilts.","Let a slow, gradual exhale move your pelvis."],180,["tilt"]]}},
     {n:"04", k:"Move", rule:"r4", dose:{
-      easy:["Articulating Bridge",["4 bridges.","Exhale to curl up, inhale into your back, roll down."],60,["bridge"]],
-      effort:["Articulating Bridge",["5 bridges.","Exhale to curl up, inhale into your back, roll down."],75,["bridge"]],
-      notyet:["Articulating Bridge",["5 bridges, slowly.","Exhale to curl up, inhale into your back, roll down."],75,["bridge"]]}}
+      easy:["Articulating Bridge",["4 bridges.","Exhale to curl up, inhale into your back, roll down."],90,["bridge"]],
+      effort:["Articulating Bridge",["5 bridges.","Exhale to curl up, inhale into your back, roll down."],120,["bridge"]],
+      notyet:["Articulating Bridge",["5 bridges, slowly.","Exhale to curl up, inhale into your back, roll down."],150,["bridge"]]}}
   ];
 
   var LIFTS = ["Squat","Deadlift","Overhead press","Pull-up or hang","Pilates class","Run"];
@@ -442,8 +443,8 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
     var total = 0;
     SLOTS.forEach(function(s){
       var lv = state.r[s.rule], key = lv || "effort";
-      var d = s.dose[key]; total += d[2];
       var isP = p && p.id===s.rule && n===4;
+      var d = (isP && s.dose.prio) ? s.dose.prio : s.dose[key]; total += d[2];
       var chip = !lv ? '<span class="chip std">Standard</span>' :
         '<span class="chip '+lv+'">'+(isP?"Your priority · ":"")+(lv==="easy"?"Short check-in":lv==="effort"?"Standard":"Longer")+'</span>';
       var row = el("div",{"class":"slot"});
@@ -478,7 +479,8 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
     RULES.forEach(function(r){ lines.push("Rule "+r.n+" "+r.name+": "+(state.r[r.id]?LEVELS[state.r[r.id]].label:"–")); });
     if (p && answered()===4) lines.push("Priority: Rule "+p.n+" "+p.name);
     lines.push("","MY PRACTICE");
-    SLOTS.forEach(function(s){ var d=s.dose[state.r[s.rule]||"effort"]; lines.push(s.n+" "+s.k+": "+d[0]); d[1].forEach(function(x){lines.push("  - "+x);}); });
+    var pp = (answered()===4) ? p : null;
+    SLOTS.forEach(function(s){ var d=(pp && pp.id===s.rule && s.dose.prio) ? s.dose.prio : s.dose[state.r[s.rule]||"effort"]; lines.push(s.n+" "+s.k+": "+d[0]); d[1].forEach(function(x){lines.push("  - "+x);}); });
     lines.push("","Self-Check after practice: "+(state.now||"–"));
     return lines.join("\n");
   }
