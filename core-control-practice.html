@@ -699,7 +699,7 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
             <div class="offer-row"><span class="offer-check">✓</span><span>Find your priority and build your practice</span></div>
             <div class="offer-row"><span class="offer-check">✓</span><span>Simple directions for every exercise</span></div>
           </div>
-          <form class="ea-form" style="margin-top:auto" action="https://app.kit.com/forms/10076364/subscriptions" method="POST">
+          <form class="ea-form" style="margin-top:auto" action="https://app.kit.com/forms/10076364/subscriptions" method="POST" data-next="/core-control-practice-tool">
             <label class="ea-field"><span>First name</span><input type="text" name="fields[first_name]" required autocomplete="given-name" placeholder="First name"></label>
             <label class="ea-field"><span>Email</span><input type="email" name="email_address" required autocomplete="email" placeholder="your@email.com"></label>
             <button type="submit" class="ea-btn">Build My Practice · Free</button>
@@ -763,7 +763,7 @@ document.querySelectorAll('.ea-form').forEach(function(f){
     btn.textContent = 'Sending\u2026'; btn.disabled = true;
     try {
       var res = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
-      if (res.ok) { f.hidden = true; f.nextElementSibling.hidden = false; }
+      if (res.ok) { if (f.dataset.next) { location.href = f.dataset.next; return; } f.hidden = true; f.nextElementSibling.hidden = false; }
       else { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
     } catch (err) { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
   });
@@ -786,7 +786,7 @@ document.addEventListener('submit', function(e){
     <button class="modal-close" type="button" aria-label="Close">×</button>
     <div class="modal-header">
       <h3 id="pm-title">Build your Core Control Practice</h3>
-      <p class="modal-sub">Free. Tell me where to send it, and your practice opens as soon as you confirm your email.</p>
+      <p class="modal-sub">Free. Your practice opens straight away, and I’ll also send it to your inbox.</p>
     </div>
     <form class="modal-form pm-form" action="https://app.kit.com/forms/10076364/subscriptions" method="POST">
       <div class="form-group"><label for="pm-fname">First name</label><input type="text" id="pm-fname" name="fields[first_name]" required autocomplete="given-name" placeholder="First name"></div>
@@ -825,7 +825,7 @@ document.addEventListener('submit', function(e){
     btn.textContent = 'Sending…'; btn.disabled = true;
     try {
       var res = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
-      if (res.ok) { f.hidden = true; done.hidden = false; }
+      if (res.ok) { location.href = '/core-control-practice-tool'; return; }
       else { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
     } catch (err) { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
   });
