@@ -723,7 +723,12 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
             <div class="price-row"><s class="price-old"><span class="sr">Regular price </span>€29</s><span class="price-new"><span class="sr">Founding-member price </span>€15</span></div>
             <span class="price-note">Opens in November. You pay €15 today instead of €29 and get access the day it opens. Full refund anytime before it opens.</span>
           </div>
-          <a class="ea-btn" href="https://buy.stripe.com/7sY3cucdN3hJb0kawV7EQ0b" style="text-align:center;text-decoration:none">Pre-order the Practice + Guidance · €15</a>
+          <form class="ea-form po-form" action="https://app.kit.com/forms/10076829/subscriptions" method="POST" data-pay="https://buy.stripe.com/7sY3cucdN3hJb0kawV7EQ0b">
+            <label class="ea-field"><span>First name</span><input type="text" name="fields[first_name]" required autocomplete="given-name" placeholder="First name"></label>
+            <label class="ea-field"><span>Email</span><input type="email" name="email_address" required autocomplete="email" placeholder="your@email.com"></label>
+            <button type="submit" class="ea-btn">Pre-order the Practice + Guidance · €15</button>
+            <span class="price-note">Next, you pay securely with Stripe. I’ll email you about your pre-order.</span>
+          </form>
         </div>
       </div>
     </div>
@@ -763,6 +768,18 @@ document.querySelectorAll('.ea-form').forEach(function(f){
     } catch (err) { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
   });
 });
+</script>
+<script>
+/* Pre-order: save name + email in Kit, then open Stripe with the email filled in */
+document.addEventListener('submit', function(e){
+  var f = e.target; if (!f.classList || !f.classList.contains('po-form')) return;
+  e.preventDefault(); e.stopPropagation();
+  var btn = f.querySelector('button'); btn.textContent = 'Taking you to checkout…'; btn.disabled = true;
+  var email = f.querySelector('[name=email_address]').value.trim();
+  var done = false; var go = function(){ if (done) return; done = true; location.href = f.dataset.pay + '?prefilled_email=' + encodeURIComponent(email); };
+  setTimeout(go, 4000);
+  fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } }).catch(function(){}).then(go);
+}, true);
 </script>
 </body>
 </html>
