@@ -152,6 +152,19 @@ textarea:focus{outline:2px solid var(--text);outline-offset:2px}
 .price-old{font-family:var(--head);font-size:1.5rem;font-weight:600;color:rgba(250,250,248,.7);text-decoration-thickness:2px}
 .price-new{font-family:var(--head);font-size:3rem;font-weight:700;line-height:1;color:var(--bg)}
 .price-note{font-size:.95rem;color:rgba(250,250,248,.85)}
+.ea-form{display:flex;flex-direction:column;gap:12px;max-width:460px}
+.ea-field{display:flex;flex-direction:column;gap:6px}
+.ea-field span{font-size:.8125rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,248,.8)}
+.ea-field input{border:1px solid rgba(250,250,248,.35);background:rgba(250,250,248,.06);padding:12px 14px;font:inherit;font-size:16px;color:var(--bg);outline:none;-webkit-appearance:none;appearance:none}
+.ea-field input::placeholder{color:rgba(250,250,248,.6)}
+.ea-field input:focus{border-color:var(--bg)}
+.ea-btn{padding:16px 32px;background:var(--bg);color:var(--dark);border:1px solid var(--bg);font:inherit;font-size:.875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s}
+.ea-btn:hover{opacity:.88}
+.ea-btn:disabled{opacity:.6;cursor:default}
+.ea-btn:focus-visible{outline:2px solid var(--bg);outline-offset:3px}
+.ea-fine{font-size:.875rem;color:rgba(250,250,248,.85)}
+.ea-done{padding:18px 20px;border-left:2px solid var(--bg);background:rgba(250,250,248,.08);font-size:16px;line-height:1.6;color:rgba(250,250,248,.92)}
+.ea-done strong{display:block;font-family:var(--head);font-size:1.2rem;color:var(--bg);margin-bottom:4px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;font-weight:500;font-size:.875rem;letter-spacing:.1em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--text);cursor:pointer;text-decoration:none;transition:opacity .2s}
@@ -263,9 +276,14 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
       <div class="price-row"><s class="price-old"><span class="sr">Regular price </span>€29</s><span class="price-new"><span class="sr">Founding-member price </span>€15</span></div>
       <span class="price-note">Join early access now for free. You pay €15 instead of €29 when it opens.</span>
     </div>
-    <div class="ctas">
-      <a class="btn inv" id="cta-guided" href="mailto:hello@gulcan-alo.com?subject=Core%20Control%20Guided%20Practice%20early%20access">Join Early Access</a>
-    </div>
+    <form class="ea-form" action="https://formspree.io/f/mjgzknaa" method="POST">
+      <input type="hidden" name="source" value="Core Control Guided Practice early access">
+      <input type="hidden" name="_subject" value="New Guided Practice early access sign-up">
+      <label class="ea-field"><span>First name</span><input type="text" name="first_name" required autocomplete="given-name" placeholder="First name"></label>
+      <label class="ea-field"><span>Email</span><input type="email" name="email" required autocomplete="email" placeholder="your@email.com"></label>
+      <button type="submit" class="ea-btn">Join Early Access</button>
+    </form>
+    <div class="ea-done" hidden role="status"><strong>You’re on the list.</strong> I’ll email you as soon as the Guided Practice opens, with your €15 founding-member price.</div>
   </div>
 </section>
 
@@ -279,7 +297,6 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
 <script>
 (function(){
   // ---- Content ----
-  var GUIDED_URL = "mailto:hello@gulcan-alo.com?subject=Core%20Control%20Guided%20Practice%20early%20access";
 
   var LEVELS = {
     easy:   {label:"Easily",      color:"var(--ok)",  dark:"var(--ok-d)",  w:100},
@@ -412,8 +429,6 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
   var lockSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>';
   LOCKED.forEach(function(t){ lock.appendChild(el("li",null,lockSvg+'<span><strong>'+esc(t[0])+'</strong>'+(t[1]?' '+esc(t[1]):'')+'</span>')); });
 
-  var cta = document.getElementById("cta-guided");
-  if (GUIDED_URL) cta.href = GUIDED_URL;
 
   // ---- Restore inputs ----
   function restore(){
@@ -523,6 +538,18 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
 
   restore(); render();
 })();
+document.querySelectorAll('.ea-form').forEach(function(f){
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn = f.querySelector('.ea-btn'); var label = btn.textContent;
+    btn.textContent = 'Sending\u2026'; btn.disabled = true;
+    try {
+      var res = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+      if (res.ok) { f.hidden = true; f.nextElementSibling.hidden = false; }
+      else { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
+    } catch (err) { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
+  });
+});
 </script>
 
 </body>
