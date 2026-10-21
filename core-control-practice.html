@@ -592,6 +592,14 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
 .card .offer-row strong { font-weight: 600; }
 .card-note { font-size: .875rem; color: var(--muted); }
 .card .btn-main { margin-top: auto; }
+.price-block { border-top: 1px solid var(--border); padding-top: 1.25rem; display: flex; flex-direction: column; gap: .35rem; }
+.price-tag { font-size: .8125rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-light); }
+.price-row { display: flex; align-items: baseline; gap: .75rem; }
+.price-old { font-family: var(--serif-bold); font-size: 1.5rem; font-weight: 600; color: var(--muted-light); text-decoration-thickness: 2px; }
+.price-new { font-family: var(--serif-bold); font-size: 3rem; font-weight: 700; line-height: 1; color: var(--text); }
+.price-note { font-size: .9375rem; color: var(--muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
 .btn-ghost-main { display: block; width: 100%; padding: 1.1rem; background: transparent; color: var(--text); border: 1px solid var(--text); font-size: .875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; text-align: center; text-decoration: none; transition: background .2s, color .2s; }
 .btn-ghost-main:hover { background: var(--text); color: var(--bg); }
 @media (max-width: 960px) { .parts { grid-template-columns: 1fr 1fr; } .part { border-left: 0; border-top: 1px solid var(--border); } .part:nth-child(even) { border-left: 1px solid var(--border); } .part:nth-child(-n+2) { border-top: 0; } }
@@ -691,7 +699,11 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
             <div class="offer-row"><span class="offer-check">✓</span><span><strong>3 levels for every exercise, and the signs you’re ready to move up.</strong> The same checks I use to decide when a client progresses, so you never move on too early or stay stuck too long.</span></div>
             <div class="offer-row"><span class="offer-check">✓</span><span><strong>A 4-week plan, dosed the way I program for clients.</strong> What to do each week, for how long, and when to check your progress.</span></div>
           </div>
-          <p class="card-note">Founding-member price: €15 instead of €29 when it opens.</p>
+          <div class="price-block">
+            <span class="price-tag">Founding-member price</span>
+            <div class="price-row"><s class="price-old"><span class="sr">Regular price </span>€29</s><span class="price-new"><span class="sr">Founding-member price </span>€15</span></div>
+            <span class="price-note">Join early access now for free. You pay €15 instead of €29 when it opens.</span>
+          </div>
           <a class="btn-ghost-main" id="guided-practice-link" href="mailto:hello@gulcan-alo.com?subject=Core%20Control%20Guided%20Practice%20early%20access">Join Early Access</a>
         </div>
       </div>
