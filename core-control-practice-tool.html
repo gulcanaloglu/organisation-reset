@@ -146,7 +146,13 @@ textarea:focus{outline:2px solid var(--text);outline-offset:2px}
 .locklist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;line-height:1.55;color:rgba(250,250,248,.88)}
 .locklist strong{color:var(--bg);font-weight:600}
 .locklist svg{flex:none;margin-top:4px}
-.locked .price{font-size:.95rem;color:rgba(250,250,248,.85)}
+.price-block{border-top:1px solid rgba(250,250,248,.2);padding-top:18px;display:flex;flex-direction:column;gap:6px}
+.price-tag{font-size:.8125rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,250,248,.8)}
+.price-row{display:flex;align-items:baseline;gap:12px}
+.price-old{font-family:var(--head);font-size:1.5rem;font-weight:600;color:rgba(250,250,248,.7);text-decoration-thickness:2px}
+.price-new{font-family:var(--head);font-size:3rem;font-weight:700;line-height:1;color:var(--bg)}
+.price-note{font-size:.95rem;color:rgba(250,250,248,.85)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;font-weight:500;font-size:.875rem;letter-spacing:.1em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--text);cursor:pointer;text-decoration:none;transition:opacity .2s}
 .btn:hover{opacity:.85}
@@ -252,7 +258,11 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
     <h3>Add the Core Control Guided Practice</h3>
     <p>Best if you want step-by-step help doing your practice and building on it.</p>
     <ul class="locklist" id="locklist"></ul>
-    <span class="price">Founding-member price: €15 instead of €29 when it opens.</span>
+    <div class="price-block">
+      <span class="price-tag">Founding-member price</span>
+      <div class="price-row"><s class="price-old"><span class="sr">Regular price </span>€29</s><span class="price-new"><span class="sr">Founding-member price </span>€15</span></div>
+      <span class="price-note">Join early access now for free. You pay €15 instead of €29 when it opens.</span>
+    </div>
     <div class="ctas">
       <a class="btn inv" id="cta-guided" href="mailto:hello@gulcan-alo.com?subject=Core%20Control%20Guided%20Practice%20early%20access">Join Early Access</a>
     </div>
