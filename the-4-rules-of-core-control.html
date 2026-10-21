@@ -824,7 +824,6 @@ form.addEventListener('submit', async e => {
     });
     const data = await res.json().catch(() => ({}));
     if (res.ok && data.status !== 'failed') {
-      try { localStorage.setItem('ga_sub', JSON.stringify({ e: form.elements['email_address'].value.trim(), n: form.elements['fields[first_name]'].value.trim() })); } catch (_) {}
       form.hidden = true;
       success.hidden = false;
     } else {
