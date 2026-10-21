@@ -530,6 +530,17 @@ footer {
 .hero-stack-text .hero-sub { max-width: 600px; margin-left: auto; margin-right: auto; }
 .hero-stack-img { max-width: 640px; margin: 1rem auto 0; height: 640px; overflow: hidden; }
 .hero-stack-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block; }
+/* Coaching photo slider */
+.proof-slider { position: relative; max-width: 520px; margin: 2.5rem auto 0; }
+.ps-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.ps-track::-webkit-scrollbar { display: none; }
+.ps-slide { flex: 0 0 100%; scroll-snap-align: center; aspect-ratio: 4 / 5; margin: 0; }
+.ps-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ps-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(250,250,248,0.9); color: var(--text); font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.ps-prev { left: 12px; } .ps-next { right: 12px; }
+.ps-dots { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+.ps-dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: var(--border); cursor: pointer; }
+.ps-dots button[aria-current="true"] { background: var(--text); }
 html { scroll-padding-top: 70px; }
 .faq-group { font-size: 0.73rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-light); margin: 3rem 0 0; }
 .faq-group + .faq-list { margin-top: 1rem; }
@@ -587,6 +598,16 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
 <section id="proof" class="sec">
   <div class="wrap-wide">
     <h2 class="r r1">I've helped lifters, dancers, runners and women through pregnancy find <span class="accent">strength that feels natural.</span> <em>Let me help you.</em></h2>
+    <div class="proof-slider r" aria-roledescription="carousel" aria-label="Coaching photos">
+      <div class="ps-track" tabindex="0">
+        <figure class="ps-slide"><img src="coach/1/image.jpg" alt="Gülcan guiding a client through a half-kneeling cable reach, one hand on his shoulder blade." loading="lazy"></figure>
+        <figure class="ps-slide"><img src="coach/2/image.jpg" alt="Gülcan cueing a client's leg position on the Pilates reformer." loading="lazy" style="object-position: 55% center;"></figure>
+        <figure class="ps-slide"><img src="coach/3/image.jpg" alt="Gülcan guiding a client's back on all fours." loading="lazy" style="object-position: 40% center;"></figure>
+      </div>
+      <button class="ps-btn ps-prev" type="button" aria-label="Previous photo">‹</button>
+      <button class="ps-btn ps-next" type="button" aria-label="Next photo">›</button>
+      <div class="ps-dots"></div>
+    </div>
     <a href="#form" class="btn-primary r" style="margin: 1.5rem 0 0;">Get the Guide →</a>
   </div>
 </section>
@@ -834,6 +855,20 @@ form.addEventListener('submit', async e => {
     btn.textContent = 'Something went wrong — try again';
     btn.disabled = false;
   }
+});
+</script>
+<script>
+/* Coaching photo slider: arrows, dots, swipe */
+document.querySelectorAll('.proof-slider').forEach(function(sl){
+  var tr = sl.querySelector('.ps-track'), slides = tr.children, dots = sl.querySelector('.ps-dots');
+  for (var i = 0; i < slides.length; i++) { (function(i){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Photo ' + (i + 1)); b.onclick = function(){ go(i); }; dots.appendChild(b); })(i); }
+  function cur(){ return Math.round(tr.scrollLeft / tr.clientWidth); }
+  function go(i){ i = (i + slides.length) % slides.length; tr.scrollTo({ left: i * tr.clientWidth, behavior: 'smooth' }); }
+  function mark(){ var c = cur(); [].forEach.call(dots.children, function(d, j){ d.setAttribute('aria-current', j === c ? 'true' : 'false'); }); }
+  sl.querySelector('.ps-prev').onclick = function(){ go(cur() - 1); };
+  sl.querySelector('.ps-next').onclick = function(){ go(cur() + 1); };
+  tr.addEventListener('scroll', function(){ window.requestAnimationFrame(mark); });
+  mark();
 });
 </script>
 </body>
