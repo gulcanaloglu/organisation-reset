@@ -179,6 +179,27 @@ textarea:focus{outline:2px solid var(--text);outline-offset:2px}
 #copyfallback{min-height:160px;font-size:14px}
 footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border);padding-top:20px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+/* Early access box: warm light panel, not a dark footer-like block */
+.locked{background:#F1E6DA;color:var(--text);border:1px solid #E2D3C2;border-top:3px solid var(--accent-big)}
+.locked .eyebrow{color:var(--accent)}
+.locked p{color:var(--text)}
+.locklist{border-top-color:#E2D3C2}
+.locklist li{color:var(--muted)}
+.locklist strong{color:var(--text)}
+.locklist svg{color:var(--accent)}
+.price-block{border-top-color:#E2D3C2}
+.price-tag{color:var(--accent)}
+.price-old{color:var(--muted-light)}
+.price-new{color:var(--text)}
+.price-note{color:var(--muted)}
+.ea-field span{color:var(--muted-light)}
+.ea-field input{border-color:#D6C4B0;background:var(--surface);color:var(--text)}
+.ea-field input::placeholder{color:#6F6B64}
+.ea-field input:focus{border-color:var(--text)}
+.ea-btn{background:var(--text);color:var(--bg);border-color:var(--text)}
+.ea-btn:focus-visible{outline-color:var(--text)}
+.ea-done{border-left-color:var(--text);background:var(--surface);color:var(--muted)}
+.ea-done strong{color:var(--text)}
 </style>
 </head>
 <body>
