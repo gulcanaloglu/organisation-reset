@@ -332,9 +332,17 @@ footer{font-size:.875rem}
     <div><b>3</b><span>Build your practice</span></div>
     <div><b>4</b><span>Check again</span></div>
   </div>
-  <div class="ctas">
-    <a class="btn" id="practice-link" href="/core-control-practice">Get Core Control Practice</a>
+  <div class="ctas" id="practice-cta">
+    <button class="btn" type="button" id="practice-send" style="border:0;cursor:pointer">Send me the Core Control Practice</button>
   </div>
+  <div id="practice-fallback-wrap" style="display:none">
+    <form id="practice-fallback" action="https://app.kit.com/forms/10076364/subscriptions" method="POST" style="display:flex;flex-direction:column;gap:10px;max-width:420px;margin-top:8px">
+      <input type="text" name="fields[first_name]" required autocomplete="given-name" placeholder="First name" aria-label="First name" style="padding:14px 16px;font:inherit;font-size:16px;border:0;background:var(--bg);color:var(--dark)">
+      <input type="email" name="email_address" required autocomplete="email" placeholder="your@email.com" aria-label="Email" style="padding:14px 16px;font:inherit;font-size:16px;border:0;background:var(--bg);color:var(--dark)">
+      <button class="btn" type="submit" style="border:0;cursor:pointer">Send me the Core Control Practice</button>
+    </form>
+  </div>
+  <p id="practice-done" role="status" style="display:none;margin-top:8px"><strong>On its way.</strong> Check your inbox for your Core Control Practice.</p>
 </div></section>
 
 <footer><div class="in">
@@ -349,6 +357,26 @@ footer{font-size:.875rem}
   var n = document.getElementById('welcome-note');
   if (n) n.textContent = 'Your subscription is confirmed. Here’s your free guide, and I’ve also sent it to your inbox.';
   if (history.replaceState) history.replaceState(null, '', location.pathname + location.hash);
+})();
+</script>
+<script>
+/* Send the Core Control Practice by email to people who already subscribed on the 4 Rules page */
+(function(){
+  var send = document.getElementById('practice-send'); if (!send) return;
+  var cta = document.getElementById('practice-cta'), wrap = document.getElementById('practice-fallback-wrap'), f = document.getElementById('practice-fallback'), done = document.getElementById('practice-done');
+  var sub = null; try { sub = JSON.parse(localStorage.getItem('ga_sub') || 'null'); } catch (_) {}
+  function post(action, data){ return fetch(action, { method: 'POST', body: data, headers: { Accept: 'application/json' } }).then(function(r){ if (!r.ok) throw new Error('failed'); }); }
+  function showForm(){ cta.style.display = 'none'; wrap.style.display = 'block'; var i = f.querySelector('input'); if (i) i.focus(); }
+  send.addEventListener('click', function(){
+    if (!sub || !sub.e) { showForm(); return; }
+    send.disabled = true; send.textContent = 'Sending…';
+    var d = new FormData(); d.append('email_address', sub.e); d.append('fields[first_name]', sub.n || '');
+    post('https://app.kit.com/forms/10076991/subscriptions', d).then(function(){ cta.style.display = 'none'; done.style.display = 'block'; }).catch(showForm);
+  });
+  f.addEventListener('submit', function(e){
+    e.preventDefault(); var btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Sending…';
+    post(f.action, new FormData(f)).then(function(){ wrap.style.display = 'none'; done.innerHTML = '<strong>Check your inbox.</strong> Confirm your email and your practice opens straight away.'; done.style.display = 'block'; }).catch(function(){ btn.disabled = false; btn.textContent = 'Something went wrong. Try again'; });
+  });
 })();
 </script>
 </body>
