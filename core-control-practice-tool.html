@@ -85,7 +85,7 @@ h1 span{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacin
 textarea{width:100%;font:inherit;font-size:16px;color:var(--text);background:var(--surface);border:1px solid var(--border);padding:12px 14px}
 textarea:focus{outline:2px solid var(--text);outline-offset:2px}
 
-/* Self-Check score */
+/* Self-Check options */
 .scores{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 @media (max-width:620px){.scores{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .scores .opt label{align-items:flex-start}
@@ -463,13 +463,13 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
     // retest
     var rb = document.getElementById("rt-base");
     var bb = BASE.filter(function(b){return String(b.v)===String(state.base);})[0];
-    rb.innerHTML = bb ? '<b>'+bb.v+'</b>'+esc(bb.t) : 'Not checked yet. Choose your score in step 0.';
+    rb.innerHTML = bb ? '<b>'+bb.v+'</b>'+esc(bb.t) : 'Not checked yet. Do the Self-Check in step 0 first.';
     var msg = document.getElementById("rt-msg");
     if (state.base && state.now){
       var dlt = Number(state.now)-Number(state.base);
-      msg.textContent = dlt>0 ? "Up "+dlt+" from before your practice." :
-        dlt===0 ? "Same score as before. That’s normal at the start. Keep doing the practice before you train." :
-        "Scores can go up and down while your body learns something new. Keep doing the practice before you train.";
+      msg.textContent = dlt>0 ? "Your heel slid further than before your practice." :
+        dlt===0 ? "Your heel slid as far as before. That’s normal at the start. Keep doing the practice before you train." :
+        "How far your heel slides can change from day to day while your body learns something new. Keep doing the practice before you train.";
       msg.hidden = false;
     } else { msg.textContent = ""; msg.hidden = true; }
   }
