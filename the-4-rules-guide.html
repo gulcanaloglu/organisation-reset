@@ -169,7 +169,7 @@ footer{font-size:.875rem}
 </style>
 </head>
 <body>
-<div class="welcome"><div class="in"><span class="mark">Gülcan Aloğlu</span><span class="note">You’re in. Here’s your free guide.</span></div></div>
+<div class="welcome"><div class="in"><span class="mark">Gülcan Aloğlu</span><span class="note" id="welcome-note">You’re in. Here’s your free guide.</span></div></div>
 
 <header class="hero"><span class="hero-bg" aria-hidden="true">Control</span><div class="in stack">
   <span class="eyebrow">A free guide from Gülcan Alo</span>
@@ -341,5 +341,15 @@ footer{font-size:.875rem}
   <span>This guide is education, not medical advice. If you have pain that doesn’t change, numbness or tingling, or pelvic floor symptoms, see a physiotherapist or doctor first.</span>
   <span>Copyright © 2026 Gülcan Alo. All rights reserved. @gulcan.alo</span>
 </div></footer>
+<script>
+/* Coming from the Kit confirm button: say the subscription is confirmed */
+(function(){
+  var p = new URLSearchParams(location.search);
+  if (!p.has('subscribed')) return;
+  var n = document.getElementById('welcome-note');
+  if (n) n.textContent = 'Your subscription is confirmed. Here’s your free guide, and I’ve also sent it to your inbox.';
+  if (history.replaceState) history.replaceState(null, '', location.pathname + location.hash);
+})();
+</script>
 </body>
 </html>
