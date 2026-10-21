@@ -699,7 +699,12 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
             <div class="offer-row"><span class="offer-check">✓</span><span>Find your priority and build your practice</span></div>
             <div class="offer-row"><span class="offer-check">✓</span><span>Simple directions for every exercise</span></div>
           </div>
-          <a class="btn-main" id="practice-tool-link" href="/core-control-practice-tool">Build My Practice · Free</a>
+          <form class="ea-form" style="margin-top:auto" action="https://app.kit.com/forms/10076364/subscriptions" method="POST">
+            <label class="ea-field"><span>First name</span><input type="text" name="fields[first_name]" required autocomplete="given-name" placeholder="First name"></label>
+            <label class="ea-field"><span>Email</span><input type="email" name="email_address" required autocomplete="email" placeholder="your@email.com"></label>
+            <button type="submit" class="ea-btn">Build My Practice · Free</button>
+          </form>
+          <div class="ea-done" hidden role="status"><strong>Check your inbox.</strong> Open the email from Gülcan and click the button to confirm your subscription. Your practice opens straight away. Can’t find it? Look in your spam or promotions folder.</div>
         </div>
       </div>
       <div class="card paid">
