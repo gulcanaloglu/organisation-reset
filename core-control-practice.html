@@ -598,6 +598,20 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
 .price-old { font-family: var(--serif-bold); font-size: 1.5rem; font-weight: 600; color: var(--muted-light); text-decoration-thickness: 2px; }
 .price-new { font-family: var(--serif-bold); font-size: 3rem; font-weight: 700; line-height: 1; color: var(--text); }
 .price-note { font-size: .9375rem; color: var(--muted); }
+.ea-form[hidden] { display: none; }
+.ea-form { display: flex; flex-direction: column; gap: .75rem; margin-top: .25rem; }
+.ea-field { display: flex; flex-direction: column; gap: .35rem; }
+.ea-field span { font-size: .8125rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-light); }
+.ea-field input { border: 1px solid var(--border); background: var(--bg2); padding: .75rem 1rem; font-family: var(--sans); font-size: 16px; color: var(--text); outline: none; -webkit-appearance: none; appearance: none; }
+.ea-field input:focus { border-color: var(--text); }
+.ea-field input::placeholder { color: var(--faint-text); }
+.ea-btn { display: block; width: 100%; padding: 1.1rem; background: var(--text); color: var(--bg); border: 1px solid var(--text); font-family: var(--sans); font-size: .875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: opacity .2s; }
+.ea-btn:hover { opacity: .85; }
+.ea-btn:disabled { opacity: .6; cursor: default; }
+.ea-fine { font-size: .875rem; color: var(--muted); }
+.ea-done { padding: 1.25rem; background: var(--bg2); border-left: 2px solid var(--text); font-size: 1rem; line-height: 1.6; }
+.ea-done strong { display: block; font-family: var(--serif-bold); font-size: 1.2rem; margin-bottom: .25rem; }
+
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .btn-ghost-main { display: block; width: 100%; padding: 1.1rem; background: transparent; color: var(--text); border: 1px solid var(--text); font-size: .875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; text-align: center; text-decoration: none; transition: background .2s, color .2s; }
@@ -704,7 +718,14 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
             <div class="price-row"><s class="price-old"><span class="sr">Regular price </span>€29</s><span class="price-new"><span class="sr">Founding-member price </span>€15</span></div>
             <span class="price-note">Join early access now for free. You pay €15 instead of €29 when it opens.</span>
           </div>
-          <a class="btn-ghost-main" id="guided-practice-link" href="mailto:hello@gulcan-alo.com?subject=Core%20Control%20Guided%20Practice%20early%20access">Join Early Access</a>
+          <form class="ea-form" action="https://formspree.io/f/mjgzknaa" method="POST">
+            <input type="hidden" name="source" value="Core Control Guided Practice early access">
+            <input type="hidden" name="_subject" value="New Guided Practice early access sign-up">
+            <label class="ea-field"><span>First name</span><input type="text" name="first_name" required autocomplete="given-name" placeholder="First name"></label>
+            <label class="ea-field"><span>Email</span><input type="email" name="email" required autocomplete="email" placeholder="your@email.com"></label>
+            <button type="submit" class="ea-btn">Join Early Access</button>
+          </form>
+          <div class="ea-done" hidden role="status"><strong>You’re on the list.</strong> I’ll email you as soon as the Guided Practice opens, with your €15 founding-member price.</div>
         </div>
       </div>
     </div>
@@ -731,6 +752,18 @@ moreBtn.addEventListener('click', () => {
   more.hidden = !open;
   moreBtn.setAttribute('aria-expanded', String(open));
   moreBtn.textContent = open ? 'Read less' : 'Read more';
+});
+document.querySelectorAll('.ea-form').forEach(function(f){
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn = f.querySelector('.ea-btn'); var label = btn.textContent;
+    btn.textContent = 'Sending\u2026'; btn.disabled = true;
+    try {
+      var res = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+      if (res.ok) { f.hidden = true; f.nextElementSibling.hidden = false; }
+      else { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
+    } catch (err) { btn.textContent = 'Something went wrong. Try again'; btn.disabled = false; }
+  });
 });
 </script>
 </body>
