@@ -740,20 +740,18 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
     <h2 class="r r1" style="margin-bottom: 1rem;">Stop letting missing core control <em>cost you your strength.</em></h2>
     <p class="cta-sub r r2">Download the guide and learn the 4 rules that make your strength feel natural instead of forced.</p>
     <div id="form" class="guide-form-box r">
-      <form id="guide-form" action="https://formspree.io/f/mjgzknaa" method="POST">
-        <input type="hidden" name="source" value="4 Rules of Core Control guide">
-        <input type="hidden" name="_subject" value="New 4 Rules guide request">
+      <form id="guide-form" action="https://app.kit.com/forms/10076065/subscriptions" method="POST">
         <div class="form-group">
           <label for="g-fname">First name</label>
-          <input type="text" id="g-fname" name="first_name" required placeholder="First name">
+          <input type="text" id="g-fname" name="fields[first_name]" required placeholder="First name">
         </div>
         <div class="form-group">
           <label for="g-email">Email</label>
-          <input type="email" id="g-email" name="email" required placeholder="your@email.com">
+          <input type="email" id="g-email" name="email_address" required placeholder="your@email.com">
         </div>
         <div class="form-group">
           <label for="g-who">What describes you best?</label>
-          <select id="g-who" name="describes_me" required>
+          <select id="g-who" name="fields[describes_me]" required>
             <option value="" disabled selected>Choose one</option>
             <option>I lift weights</option>
             <option>I do Pilates</option>
@@ -767,8 +765,8 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
         <button type="submit" class="btn-main">Send me the guide →</button>
       </form>
       <div id="form-success" class="form-success" hidden>
-        <strong>It's on its way.</strong>
-        Keep an eye on your inbox. The guide will reach you soon.
+        <strong>Check your inbox.</strong>
+        Open the email from Gülcan and click the button to get your guide. Can't find it? Look in your spam or promotions folder.
       </div>
     </div>
   </div>
@@ -824,7 +822,8 @@ form.addEventListener('submit', async e => {
       body: new FormData(form),
       headers: { Accept: 'application/json' }
     });
-    if (res.ok) {
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.status !== 'failed') {
       form.hidden = true;
       success.hidden = false;
     } else {
