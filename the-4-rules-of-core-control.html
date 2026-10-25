@@ -574,6 +574,12 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
 @media (prefers-reduced-motion: reduce){ .r{opacity:1;transform:none;transition:none} html{scroll-behavior:auto} }
 </style>
 <script src="/email-check.js"></script>
+<style>
+.signup-spinner{display:block;width:24px;height:24px;margin:0 auto 16px;border:2px solid var(--border);border-top-color:var(--text);border-radius:50%;animation:signup-spin .8s linear infinite}
+@keyframes signup-spin{to{transform:rotate(360deg)}}
+#form-success p{margin:0;font-size:16px;line-height:1.7;color:var(--text)}
+@media(prefers-reduced-motion:reduce){.signup-spinner{animation:none}}
+</style>
 </head>
 <body>
 
@@ -783,9 +789,10 @@ a:focus-visible,button:focus-visible,.faq-q:focus-visible,input:focus-visible,se
         </div>
         <button type="submit" class="btn-main">Send me the guide →</button>
       </form>
-      <div id="form-success" class="form-success" hidden>
-        <strong>Check your inbox.</strong>
-        Open the email from Gülcan and click the button to confirm your subscription. Your guide opens straight away. Can't find it? Look in your spam or promotions folder.
+      <div id="form-success" class="form-success" role="status" aria-live="polite" hidden>
+        <span class="signup-spinner" aria-hidden="true"></span>
+        <p>You’re signed up.</p>
+        <p>Opening your confirmation…</p>
       </div>
     </div>
   </div>
@@ -843,7 +850,10 @@ form.addEventListener('submit', async e => {
     });
     const data = await res.json().catch(() => ({}));
     if (res.ok && data.status !== 'failed') {
-      window.location.assign('/confirmed.html');
+      form.hidden = true;
+      success.hidden = false;
+      success.setAttribute('aria-busy', 'true');
+      setTimeout(() => window.location.assign('/confirmed.html'), 1200);
     } else {
       btn.textContent = 'Something went wrong — try again';
       btn.disabled = false;
