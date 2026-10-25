@@ -167,6 +167,34 @@ footer{font-size:.875rem}
 .btn.ghost{color:rgba(250,250,248,.9);border-color:rgba(250,250,248,.5)}
 .rule-num{-webkit-text-stroke:1.5px var(--muted-light)}
 </style>
+<style>
+/* Coaching copy and original landing-page carousel */
+/* Coaching photo slider */
+.proof-slider { position: relative; max-width: 520px; margin: 2.5rem auto 0; }
+.ps-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.ps-track::-webkit-scrollbar { display: none; }
+.ps-slide { flex: 0 0 100%; scroll-snap-align: center; aspect-ratio: 1 / 1; margin: 0; }
+.ps-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ps-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(250,250,248,0.9); color: var(--text); font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.ps-prev { left: 12px; } .ps-next { right: 12px; }
+.ps-dots { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+.ps-dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: var(--border); cursor: pointer; }
+.ps-dots button[aria-current="true"] { background: var(--text); }
+
+.coaching-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:0;align-items:stretch}
+.coaching-copy{width:100%;max-width:680px;padding:72px clamp(24px,4vw,64px);align-self:center}
+.coaching-split h2{font-size:clamp(2rem,3.3vw,3rem)}
+.coaching-photos{min-width:0;position:relative}
+.coaching-photos .proof-slider{max-width:none;margin:0;height:100%}
+.coaching-photos .ps-track{height:100%;min-height:600px}
+.coaching-photos .ps-slide{padding:0;border:0;display:block;background:var(--bg3);height:auto;aspect-ratio:auto;min-width:0}
+.coaching-photos .ps-slide img{height:100%;min-height:600px}
+.coaching-photos .ps-dots{position:absolute;bottom:20px;left:0;right:0;margin:0}
+.coaching-photos .ps-dots button{background:rgba(250,250,248,.55);width:10px;height:10px}
+.coaching-photos .ps-dots button[aria-current="true"]{background:var(--text);outline:2px solid var(--bg);outline-offset:2px}
+.coaching-photos button:focus-visible,.ps-track:focus-visible{outline:2px solid var(--bg);outline-offset:3px}
+@media(max-width:800px){.coaching-split{grid-template-columns:1fr}.coaching-copy{max-width:760px;padding:56px 24px}.coaching-photos .ps-track{height:auto;min-height:0}.coaching-photos .ps-slide{aspect-ratio:1/1}.coaching-photos .ps-slide img{min-height:0}}
+</style>
 </head>
 <body>
 <div class="welcome"><div class="in"><span class="mark">Gülcan Aloğlu</span><span class="note" id="welcome-note">You’re in. Here’s your free guide.</span></div></div>
@@ -318,7 +346,7 @@ footer{font-size:.875rem}
 </div></section>
 
 <!-- NEXT STEP -->
-<section class="next"><div class="in stack">
+<section class="next coaching-split"><div class="in stack coaching-copy">
   <span class="eyebrow">One-on-one coaching with Gülcan Alo</span>
   <h2>I know how frustrating it feels when you can’t get your core control right.</h2>
   <h2 style="margin-top:16px">Let’s work on it together.</h2>
@@ -326,7 +354,16 @@ footer{font-size:.875rem}
   <div class="ctas">
     <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeAlKfoAzrsPblxih3HOJn9g9uGSRkooz0_IOvpNWfi0d1mjA/viewform?usp=header" target="_blank" rel="noopener">Book a call with me</a>
   </div>
-</div></section>
+</div><div class="coaching-photos"><div class="proof-slider" aria-roledescription="carousel" aria-label="Coaching photos">
+      <div class="ps-track" tabindex="0">
+        <figure class="ps-slide"><img src="coach/1/image.jpg" alt="Gülcan guiding a client through a half-kneeling cable reach, one hand on his shoulder blade." loading="lazy"></figure>
+        <figure class="ps-slide"><img src="coach/2/image.jpg" alt="Gülcan cueing a client's leg position on the Pilates reformer." loading="lazy" style="object-position: 55% center;"></figure>
+        <figure class="ps-slide"><img src="coach/3/image.jpg" alt="Gülcan guiding a client's back on all fours." loading="lazy" style="object-position: 40% center;"></figure>
+      </div>
+      <button class="ps-btn ps-prev" type="button" aria-label="Previous photo">‹</button>
+      <button class="ps-btn ps-next" type="button" aria-label="Next photo">›</button>
+      <div class="ps-dots"></div>
+    </div></div></section>
 
 <section class="rule"><div class="in stack">
   <h2 style="font-family:var(--head);font-weight:700;font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.05;letter-spacing:-.02em;text-align:center">Take control of your core</h2>
@@ -345,6 +382,20 @@ footer{font-size:.875rem}
   if (n) n.textContent = 'Your subscription is confirmed. Here’s your free guide, and I’ve also sent it to your inbox.';
   if (history.replaceState) history.replaceState(null, '', location.pathname + location.hash);
 })();
+</script>
+<script>
+/* Coaching photo slider: arrows, dots, swipe */
+document.querySelectorAll('.proof-slider').forEach(function(sl){
+  var tr = sl.querySelector('.ps-track'), slides = tr.children, dots = sl.querySelector('.ps-dots');
+  for (var i = 0; i < slides.length; i++) { (function(i){ var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Photo ' + (i + 1)); b.onclick = function(){ go(i); }; dots.appendChild(b); })(i); }
+  function cur(){ return Math.round(tr.scrollLeft / tr.clientWidth); }
+  function go(i){ i = (i + slides.length) % slides.length; tr.scrollTo({ left: i * tr.clientWidth, behavior: 'smooth' }); }
+  function mark(){ var c = cur(); [].forEach.call(dots.children, function(d, j){ d.setAttribute('aria-current', j === c ? 'true' : 'false'); }); }
+  sl.querySelector('.ps-prev').onclick = function(){ go(cur() - 1); };
+  sl.querySelector('.ps-next').onclick = function(){ go(cur() + 1); };
+  tr.addEventListener('scroll', function(){ window.requestAnimationFrame(mark); });
+  mark();
+});
 </script>
 </body>
 </html>
