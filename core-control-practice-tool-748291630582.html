@@ -288,23 +288,6 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
   </div>
   <textarea id="copyfallback" hidden aria-label="Your practice as text"></textarea>
 
-  <div class="locked">
-    <span class="eyebrow">Pre-order</span>
-    <h3>Add the Core Control Guided Practice</h3>
-    <p>Best if you want step-by-step help doing your practice and building on it.</p>
-    <ul class="locklist" id="locklist"></ul>
-    <div class="price-block">
-      <span class="price-tag">Founding-member price</span>
-      <div class="price-row"><s class="price-old"><span class="sr">Regular price </span>€29</s><span class="price-new"><span class="sr">Founding-member price </span>€15</span></div>
-      <span class="price-note">Opens in November. You pay €15 today instead of €29 and get access the day it opens. Full refund anytime before it opens.</span>
-    </div>
-    <form class="ea-form po-form" action="https://app.kit.com/forms/10076829/subscriptions" method="POST" data-pay="https://buy.stripe.com/7sY3cucdN3hJb0kawV7EQ0b">
-      <label class="ea-field"><span>First name</span><input type="text" name="fields[first_name]" required autocomplete="given-name" placeholder="First name"></label>
-      <label class="ea-field"><span>Email</span><input type="email" name="email_address" required autocomplete="email" placeholder="your@email.com"></label>
-      <button type="submit" class="ea-btn">Pre-order the Practice + Guidance · €15</button>
-      <span class="price-note">Next, you pay securely with Stripe. I’ll email you about your pre-order.</span>
-    </form>
-  </div>
 </section>
 
 <footer>
@@ -447,7 +430,7 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
 
   var lock = document.getElementById("locklist");
   var lockSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>';
-  LOCKED.forEach(function(t){ lock.appendChild(el("li",null,lockSvg+'<span><strong>'+esc(t[0])+'</strong>'+(t[1]?' '+esc(t[1]):'')+'</span>')); });
+  if (lock) LOCKED.forEach(function(t){ lock.appendChild(el("li",null,lockSvg+'<span><strong>'+esc(t[0])+'</strong>'+(t[1]?' '+esc(t[1]):'')+'</span>')); });
 
 
   // ---- Restore inputs ----
@@ -481,7 +464,7 @@ footer{font-size:.875rem;color:var(--muted);display:flex;flex-direction:column;g
     });
     var t = document.getElementById("prio-title"), note = document.getElementById("prio-note");
     if (n<4){ t.textContent = "Explore all 4 rules to find your priority"; note.textContent = n+" of 4 rules explored. Until then, Part 2 shows the standard practice."; }
-    else if (!p){ t.textContent = "All 4 rules feel easy"; note.textContent = "Your floor practice is a short check-in. Your next step is keeping this under load, which is what the Core Control Guided Practice works on."; }
+    else if (!p){ t.textContent = "All 4 rules feel easy"; note.textContent = "Your floor practice is a short check-in. Your next step is keeping this under load in your own training."; }
     else {
       t.textContent = "Your priority: Rule "+p.n+" · "+p.name;
       note.textContent = "Your practice below gives this rule the most time.";
@@ -572,17 +555,5 @@ document.querySelectorAll('.ea-form').forEach(function(f){
 });
 </script>
 
-<script>
-/* Pre-order: save name + email in Kit, then open Stripe with the email filled in */
-document.addEventListener('submit', function(e){
-  var f = e.target; if (!f.classList || !f.classList.contains('po-form')) return;
-  e.preventDefault(); e.stopPropagation();
-  var btn = f.querySelector('button'); btn.textContent = 'Taking you to checkout…'; btn.disabled = true;
-  var email = f.querySelector('[name=email_address]').value.trim();
-  var done = false; var go = function(){ if (done) return; done = true; location.href = f.dataset.pay + '?prefilled_email=' + encodeURIComponent(email); };
-  setTimeout(go, 4000);
-  fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } }).catch(function(){}).then(go);
-}, true);
-</script>
 </body>
 </html>
